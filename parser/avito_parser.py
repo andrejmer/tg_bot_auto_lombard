@@ -54,10 +54,11 @@ class CarData:
     images: Optional[List[str]] = None
 
 class AvitoParser:
-    def __init__(self, headless: bool = False):
+    def __init__(self, headless: bool = False, max_images: int = 10):
         """Инициализация парсера"""
         self.driver = None
         self.headless = headless
+        self.max_images = max_images
         self.cars_data: List[CarData] = []
 
         # Карта трансмиссий
@@ -272,43 +273,59 @@ class AvitoParser:
         """Парсинг детальной страницы автомобиля"""
         try:
             print(f"  🔗 Переходим в карточку: {car_url}")
-            
+
             # Открываем страницу автомобиля в новой вкладке
             self.driver.execute_script(f"window.open('{car_url}', '_blank');")
             self.driver.switch_to.window(self.driver.window_handles[-1])
-            
+
             # Ждем загрузки
             time.sleep(3)
-            
+
             details = {}
-            
-            # Ищем все изображения
+
+                        # Ищем все изображения
             images = []
             try:
-                # Основное изображение
-                main_img = self.driver.find_element(By.CSS_SELECTOR, '[data-marker="image-frame/image"]')
-                if main_img and main_img.get_attribute('src'):
-                    images.append(main_img.get_attribute('src'))
+                # Изображения в галерее предварительного просмотра
+                gallery_items = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="image-preview/item"] img')
+                for img in gallery_items:
+                    src = img.get_attribute('src')
+                    if src and not any(x in src.lower() for x in ['placeholder', 'no-photo']):
+                        # Получаем полноразмерное изображение (убираем параметры качества)
+                        if '?cqp=' in src:
+                            full_src = src.split('?cqp=')[0]
+                        else:
+                            full_src = src
+                        
+                        if full_src not in images:
+                            images.append(full_src)
                 
-                # Дополнительные изображения в галерее
-                gallery_imgs = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="image-frame/image"], .image-frame img, .gallery img')
-                for img in gallery_imgs:
-                    src = img.get_attribute('src') or img.get_attribute('data-src')
-                    if src and src not in images and not any(x in src.lower() for x in ['placeholder', 'no-photo']):
-                        images.append(src)
+                # Если не нашли в галерее, ищем основное изображение
+                if not images:
+                    main_imgs = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="image-frame/image"], .desktop-1i6k59z, img[alt*="цена"]')
+                    for img in main_imgs:
+                        src = img.get_attribute('src')
+                        if src and not any(x in src.lower() for x in ['placeholder', 'no-photo']):
+                            if '?cqp=' in src:
+                                full_src = src.split('?cqp=')[0]
+                            else:
+                                full_src = src
+                            
+                            if full_src not in images:
+                                images.append(full_src)
                         
             except NoSuchElementException:
                 pass
-            
-            details['images'] = images[:5]  # Максимум 5 изображений
-            
+
+            details['images'] = images[:self.max_images]  # Ограничиваем количество изображений
+
             # Полное описание
             try:
                 desc_elem = self.driver.find_element(By.CSS_SELECTOR, '[data-marker="item-view/item-description"], .item-description-text, [itemprop="description"]')
                 details['full_description'] = desc_elem.text.strip()
             except NoSuchElementException:
                 details['full_description'] = None
-            
+
             # Характеристики из таблицы
             try:
                 params = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="item-view/item-params"], .item-params .item-params-list li')
@@ -332,13 +349,13 @@ class AvitoParser:
                         details['vin_from_page'] = param_text.split(':')[-1].strip()
             except NoSuchElementException:
                 pass
-            
+
             # Закрываем вкладку и возвращаемся к списку
             self.driver.close()
             self.driver.switch_to.window(self.driver.window_handles[0])
-            
+
             return details
-            
+
         except Exception as e:
             print(f"  ❌ Ошибка при парсинге карточки: {e}")
             # Попытка вернуться к основной вкладке при ошибке
@@ -353,7 +370,7 @@ class AvitoParser:
     def download_multiple_images(self, images: list, brand: str, model: str, year: int) -> list:
         """Загрузка нескольких изображений"""
         downloaded_files = []
-        
+
         for i, image_url in enumerate(images):
             try:
                 filename = self.generate_image_filename(brand, model, year, i)
@@ -365,81 +382,89 @@ class AvitoParser:
             except Exception as e:
                 print(f"  ⚠️ Ошибка загрузки изображения {i+1}: {e}")
                 continue
-                
+
         return downloaded_files
 
     def parse_avito_page(self, url: str):
         """Парсинг страницы Авито с переходом в каждую карточку"""
         print(f"🔍 Парсим страницу: {url}")
-        
+
         if not self.driver:
             self.setup_driver()
-        
+
         try:
             self.driver.get(url)
-            
+
             # Ждем загрузки страницы
             time.sleep(5)
-            
+
             # Прокручиваем для загрузки всех объявлений
             self.scroll_to_load_all()
-            
+
             # Ищем все карточки объявлений
-            car_elements = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="item"]')
-            
+            car_elements = self.driver.find_elements(By.CSS_SELECTOR, '[itemtype="http://schema.org/Product"]')
+
             print(f"📋 Найдено объявлений: {len(car_elements)}")
             print(f"⏱️  Примерное время парсинга: {len(car_elements) * 5} секунд")
-            
+
             # Собираем ссылки на все объявления
             car_links = []
             car_titles = []
             car_prices = []
-            
+
             for i, element in enumerate(car_elements, 1):
                 try:
                     # Заголовок
                     title_elem = element.find_element(By.CSS_SELECTOR, '[itemprop="name"]')
                     title = title_elem.text.strip()
                     car_titles.append(title)
-                    
+
                     # Цена
-                    price_elem = element.find_element(By.CSS_SELECTOR, '[itemprop="price"]')
-                    price_text = price_elem.get_attribute('content') or price_elem.text
-                    price = self.parse_price(price_text)
+                    try:
+                        # Сначала пробуем получить из content атрибута
+                        price_elem = element.find_element(By.CSS_SELECTOR, '[itemprop="price"]')
+                        price_text = price_elem.get_attribute('content')
+                        if not price_text:
+                            # Если content пустой, пробуем text из data-marker
+                            price_elem = element.find_element(By.CSS_SELECTOR, '[data-marker="item-price"]')
+                            price_text = price_elem.text
+                        price = self.parse_price(price_text)
+                    except:
+                        price = 0
                     car_prices.append(price)
-                    
+
                     # Ссылка на объявление
                     link_elem = element.find_element(By.CSS_SELECTOR, '[itemprop="url"]')
                     car_url = urljoin(url, link_elem.get_attribute('href'))
                     car_links.append(car_url)
-                    
+
                 except Exception as e:
                     print(f"⚠️ Ошибка при получении данных объявления {i}: {e}")
                     continue
-            
+
             # Теперь парсим каждую карточку детально
             for i, (car_url, title, price) in enumerate(zip(car_links, car_titles, car_prices), 1):
                 try:
                     print(f"\n🚗 Обрабатываем {i}/{len(car_links)}: {title}")
-                    
+
                     # Парсим название
                     full_title, brand, model, year = self.parse_car_title(title)
-                    
+
                     # Базовые детали из заголовка
                     basic_details = self.parse_car_details(title)
-                    
+
                     # Получаем детальную информацию из карточки
                     detailed_info = self.parse_car_details_from_page(car_url)
-                    
+
                     # Загружаем изображения
                     image_files = []
                     if detailed_info.get('images'):
                         image_files = self.download_multiple_images(
                             detailed_info['images'], brand, model, year
                         )
-                    
-                    # Используем более точные данные из карточки, если они есть
-                    mileage = basic_details.get('mileage')
+
+                                        # Используем более точные данные из карточки, если они есть
+                    mileage = basic_details.get('mileage', 0)
                     if detailed_info.get('mileage_from_page'):
                         try:
                             mileage_text = detailed_info['mileage_from_page']
@@ -462,7 +487,7 @@ class AvitoParser:
                             if key in fuel_text:
                                 fuel_type = value
                                 break
-                    
+
                     # Создаем объект автомобиля с полной информацией
                     car = CarData(
                         title=full_title,
@@ -478,29 +503,31 @@ class AvitoParser:
                         body_type=detailed_info.get('body_type_from_page', 'Седан'),
                         color=detailed_info.get('color_from_page', 'Не указан'),
                         url=car_url,
-                        image_url=detailed_info.get('images', [None])[0],
+                        image_url=detailed_info.get('images', [None])[0] if detailed_info.get('images') else None,
                         image_filename=image_files[0] if image_files else None,
                         images=image_files,
                         vin=detailed_info.get('vin_from_page'),
                         description=detailed_info.get('full_description') or f"{brand} {model} {year} года в хорошем состоянии."
                     )
-                    
+
                     # Добавляем дополнительные изображения в описание
                     if len(image_files) > 1:
                         car.description += f"\n\nДополнительные изображения: {', '.join(image_files[1:])}"
-                    
+
                     self.cars_data.append(car)
                     print(f"✅ {brand} {model} {year} - {price:,} ₽ (изображений: {len(image_files)})")
-                    
+
                 except Exception as e:
+                    import traceback
                     print(f"⚠️ Ошибка при обработке объявления {i}: {e}")
+                    print(f"  Подробности: {traceback.format_exc()}")
                     continue
-            
+
             print(f"\n🎉 Успешно обработано {len(self.cars_data)} автомобилей")
-            
+
         except Exception as e:
             print(f"❌ Ошибка при парсинге: {e}")
-        
+
         finally:
             if self.driver:
                 self.driver.quit()
@@ -522,12 +549,12 @@ class AvitoParser:
                         # Определяем изображения
             if car.images and len(car.images) > 0:
                 images_list = [f"images/cars/{img}" for img in car.images]
-                images_yaml = f'[{", ".join([f\'"{img}"\' for img in images_list])}]'
+                images_yaml = '[' + ', '.join([f'"{img}"' for img in images_list]) + ']'
                 main_image = images_list[0]
             else:
                 images_yaml = '["images/cars/placeholder.svg"]'
                 main_image = "images/cars/placeholder.svg"
-            
+
             # Шаблон файла
             content = f"""---
 title: "{car.title}"

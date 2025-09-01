@@ -1,10 +1,11 @@
 ---
-title: "Infiniti QX80 2015"
-date: 2025-09-01T22:26:07+03:00
+title: "Infiniti QX80 5.6 AT, 2015, 144 000 км"
+date: 2025-09-01T22:57:17+03:00
 draft: false
-image: "images/cars/placeholder.svg"
+image: "images/cars/infiniti-qx80-2015.jpg"
+images: ["images/cars/infiniti-qx80-2015.jpg", "images/cars/infiniti-qx80-2015-1.jpg", "images/cars/infiniti-qx80-2015-2.jpg", "images/cars/infiniti-qx80-2015-3.jpg", "images/cars/infiniti-qx80-2015-4.jpg"]
 
-# КРИТИЧЕСКИ ВАЖНО! Эти поля используются для динамической фильтрации
+# Данные для фильтрации
 brand: "Infiniti"
 model: "QX80"
 
@@ -14,18 +15,28 @@ mileage: 144000
 engine_volume: 5.6
 fuel_type: "Бензин"
 transmission: "AT"
-drive_type: "Полный"
-body_type: "Внедорожник"
-color: "Черный"
+drive_type: "Передний"
+body_type: "Седан"
+color: "Не указан"
 condition: "Хорошее"
-vin: "XXXXXXXXXXXXXXXXX"
+vin: "Не указан"
 owners_count: 1
 pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "Infiniti QX80 2015 года в хорошем состоянии. Надежный полноразмерный внедорожник с мощным двигателем."
-tags: ["внедорожник", "премиум", "полный привод", "7 мест"]
+description: "В отличном состоянии, без ДТП
+Вся электроника работает штатно.
+Мотор не дымит , масло не расходует.
+Ходовая и Акпп без вложений .
+По машине ничего делать не надо.
+Юр. Чистая.
+Выглядит в живую потрясающи.
+Обмена не рассматриваю
+
+Дополнительные изображения: infiniti-qx80-2015-1.jpg, infiniti-qx80-2015-2.jpg, infiniti-qx80-2015-3.jpg, infiniti-qx80-2015-4.jpg"
+source_url: "https://www.avito.ru/moskva/avtomobili/infiniti_qx80_5.6_at_2015_144_000_km_7558839240?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+tags: ["авито", "автомобиль"]
 weight: 1
 ---
 
@@ -37,33 +48,29 @@ weight: 1
 | **Модель** | QX80 |
 | **Год выпуска** | 2015 |
 | **Цена** | 2,490,000 ₽ |
-| **Пробег** | 144,000 км |
+| **Пробег** | 144000 км |
 | **Объем двигателя** | 5.6 л |
 | **Тип топлива** | Бензин |
 | **Коробка передач** | AT |
-| **Привод** | Полный |
-| **Тип кузова** | Внедорожник |
-| **Цвет** | Черный |
 | **Состояние** | Хорошее |
 
 ## Описание
 
-Infiniti QX80 2015 года в хорошем состоянии. Надежный полноразмерный внедорожник с мощным двигателем.
+В отличном состоянии, без ДТП
+Вся электроника работает штатно.
+Мотор не дымит , масло не расходует.
+Ходовая и Акпп без вложений .
+По машине ничего делать не надо.
+Юр. Чистая.
+Выглядит в живую потрясающи.
+Обмена не рассматриваю
 
-### Комплектация:
-- Кожаный салон премиум-класса
-- Панорамная крыша
-- Система навигации
-- Камера заднего вида  
-- Датчики парковки спереди и сзади
-- Климат-контроль трехзонный
-- Подогрев и вентиляция сидений
+Дополнительные изображения: infiniti-qx80-2015-1.jpg, infiniti-qx80-2015-2.jpg, infiniti-qx80-2015-3.jpg, infiniti-qx80-2015-4.jpg
 
-### Техническое состояние:
-- Двигатель V8 5.6л работает ровно
-- Автоматическая коробка переключается плавно
-- Подвеска в хорошем состоянии
-- Все электронные системы исправны
-- Регулярное ТО у официального дилера
+**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/infiniti_qx80_5.6_at_2015_144_000_km_7558839240?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
+eybrfkm
+### Контакты
+- Телефон: +7 (999) 123-45-67
+- Email: info@auto-lombard.ru
 
 **Возможен обмен, кредит, лизинг.**

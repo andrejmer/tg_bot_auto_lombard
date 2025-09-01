@@ -1,10 +1,11 @@
 ---
-title: "Land Rover Discovery 2013"
-date: 2025-09-01T22:26:07+03:00
+title: "Land Rover Discovery 3.0 AT, 2013, 266 000 км"
+date: 2025-09-01T22:57:17+03:00
 draft: false
-image: "images/cars/placeholder.svg"
+image: "images/cars/land-rover-discovery-2013.jpg"
+images: ["images/cars/land-rover-discovery-2013.jpg", "images/cars/land-rover-discovery-2013-1.jpg", "images/cars/land-rover-discovery-2013-2.jpg", "images/cars/land-rover-discovery-2013-3.jpg", "images/cars/land-rover-discovery-2013-4.jpg"]
 
-# КРИТИЧЕСКИ ВАЖНО! Эти поля используются для динамической фильтрации
+# Данные для фильтрации
 brand: "Land Rover"
 model: "Discovery"
 
@@ -12,20 +13,23 @@ year: 2013
 price: 1350000
 mileage: 266000
 engine_volume: 3.0
-fuel_type: "Дизель"
+fuel_type: "Бензин"
 transmission: "AT"
-drive_type: "Полный"
-body_type: "Внедорожник"
-color: "Серый"
+drive_type: "Передний"
+body_type: "Седан"
+color: "Не указан"
 condition: "Хорошее"
-vin: "XXXXXXXXXXXXXXXXX"
+vin: "Не указан"
 owners_count: 1
 pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "Land Rover Discovery 2013 года. Настоящий британский внедорожник для любых дорог."
-tags: ["внедорожник", "дизель", "проходимость", "британия"]
+description: "Технически в отличном состоянии. По кузову нареканий нет. Юридически чистый. 5 мест
+
+Дополнительные изображения: land-rover-discovery-2013-1.jpg, land-rover-discovery-2013-2.jpg, land-rover-discovery-2013-3.jpg, land-rover-discovery-2013-4.jpg"
+source_url: "https://www.avito.ru/moskva/avtomobili/land_rover_discovery_3.0_at_2013_266_000_km_7462189880?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+tags: ["авито", "автомобиль"]
 weight: 1
 ---
 
@@ -37,31 +41,22 @@ weight: 1
 | **Модель** | Discovery |
 | **Год выпуска** | 2013 |
 | **Цена** | 1,350,000 ₽ |
-| **Пробег** | 266,000 км |
+| **Пробег** | 266000 км |
 | **Объем двигателя** | 3.0 л |
-| **Тип топлива** | Дизель |
+| **Тип топлива** | Бензин |
 | **Коробка передач** | AT |
-| **Привод** | Полный |
-| **Тип кузова** | Внедорожник |
-| **Цвет** | Серый |
 | **Состояние** | Хорошее |
 
 ## Описание
 
-Land Rover Discovery 2013 года. Настоящий британский внедорожник для любых дорог.
+Технически в отличном состоянии. По кузову нареканий нет. Юридически чистый. 5 мест
 
-### Комплектация:
-- Кожаный салон
-- Система навигации
-- Камера заднего вида
-- Датчики парковки
-- Климат-контроль двухзонный
-- Подогрев сидений
+Дополнительные изображения: land-rover-discovery-2013-1.jpg, land-rover-discovery-2013-2.jpg, land-rover-discovery-2013-3.jpg, land-rover-discovery-2013-4.jpg
 
-### Техническое состояние:
-- Дизельный двигатель 3.0л тяговитый
-- Автомат работает корректно
-- Система полного привода Terrain Response
-- Пневмоподвеска функционирует
+**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/land_rover_discovery_3.0_at_2013_266_000_km_7462189880?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
+
+### Контакты
+- Телефон: +7 (999) 123-45-67
+- Email: info@auto-lombard.ru
 
 **Возможен обмен, кредит, лизинг.**

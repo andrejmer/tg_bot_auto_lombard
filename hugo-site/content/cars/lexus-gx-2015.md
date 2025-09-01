@@ -1,10 +1,11 @@
 ---
-title: "Lexus GX 2015"
-date: 2025-09-01T22:26:07+03:00
+title: "Lexus GX 4.6 AT, 2015, 124 000 км"
+date: 2025-09-01T22:57:17+03:00
 draft: false
-image: "images/cars/placeholder.svg"
+image: "images/cars/lexus-gx-2015.jpg"
+images: ["images/cars/lexus-gx-2015.jpg", "images/cars/lexus-gx-2015-1.jpg", "images/cars/lexus-gx-2015-2.jpg", "images/cars/lexus-gx-2015-3.jpg", "images/cars/lexus-gx-2015-4.jpg"]
 
-# КРИТИЧЕСКИ ВАЖНО! Эти поля используются для динамической фильтрации
+# Данные для фильтрации
 brand: "Lexus"
 model: "GX"
 
@@ -14,18 +15,21 @@ mileage: 124000
 engine_volume: 4.6
 fuel_type: "Бензин"
 transmission: "AT"
-drive_type: "Полный"
-body_type: "Внедорожник"
-color: "Белый"
-condition: "Отличное"
-vin: "XXXXXXXXXXXXXXXXX"
+drive_type: "Передний"
+body_type: "Седан"
+color: "Не указан"
+condition: "Хорошее"
+vin: "Не указан"
 owners_count: 1
 pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "Lexus GX 2015 года в отличном состоянии. Легендарная надежность и проходимость японского внедорожника."
-tags: ["внедорожник", "премиум", "надежность", "japan"]
+description: "В отличном состоянии, вложений не требует, полностью обслужен, юридических проблем нет, любые проверки приветствуется. Вин на раме читается. 7 мест. Салон в отличном состоянии, кузов без сколов и дефектов.
+
+Дополнительные изображения: lexus-gx-2015-1.jpg, lexus-gx-2015-2.jpg, lexus-gx-2015-3.jpg, lexus-gx-2015-4.jpg"
+source_url: "https://www.avito.ru/moskva/avtomobili/lexus_gx_4.6_at_2015_124_000_km_7526520472?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+tags: ["авито", "автомобиль"]
 weight: 1
 ---
 
@@ -37,33 +41,22 @@ weight: 1
 | **Модель** | GX |
 | **Год выпуска** | 2015 |
 | **Цена** | 3,600,000 ₽ |
-| **Пробег** | 124,000 км |
+| **Пробег** | 124000 км |
 | **Объем двигателя** | 4.6 л |
 | **Тип топлива** | Бензин |
 | **Коробка передач** | AT |
-| **Привод** | Полный |
-| **Тип кузова** | Внедорожник |
-| **Цвет** | Белый |
-| **Состояние** | Отличное |
+| **Состояние** | Хорошее |
 
 ## Описание
 
-Lexus GX 2015 года в отличном состоянии. Легендарная надежность и проходимость японского внедорожника.
+В отличном состоянии, вложений не требует, полностью обслужен, юридических проблем нет, любые проверки приветствуется. Вин на раме читается. 7 мест. Салон в отличном состоянии, кузов без сколов и дефектов.
 
-### Комплектация:
-- Кожаный салон с отделкой деревом
-- Система Mark Levinson
-- Камера заднего вида и обзора
-- Датчики парковки по периметру
-- Климат-контроль четырехзонный
-- Подогрев и вентиляция сидений
-- Люк панорамный
+Дополнительные изображения: lexus-gx-2015-1.jpg, lexus-gx-2015-2.jpg, lexus-gx-2015-3.jpg, lexus-gx-2015-4.jpg
 
-### Техническое состояние:
-- Двигатель V8 4.6л без нареканий
-- Коробка автомат работает идеально
-- Подвеска адаптивная в отличном состоянии
-- Полный привод функционирует исправно
-- Сервисная история в наличии
+**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/lexus_gx_4.6_at_2015_124_000_km_7526520472?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
+
+### Контакты
+- Телефон: +7 (999) 123-45-67
+- Email: info@auto-lombard.ru
 
 **Возможен обмен, кредит, лизинг.**

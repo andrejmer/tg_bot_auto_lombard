@@ -5,10 +5,10 @@
      data-year="{{ .Params.year }}"
      data-price="{{ .Params.price }}"
      data-mileage="{{ .Params.mileage }}"
-     data-engine="{{ .Params.engine.type }}"
+     data-engine="{{ .Params.fuel_type }}"
      data-transmission="{{ .Params.transmission }}"
-     data-body="{{ .Params.body }}"
-     data-fuel="{{ .Params.engine.type }}"
+     data-body="{{ .Params.body_type }}"
+     data-fuel="{{ .Params.fuel_type }}"
      data-condition="{{ .Params.condition }}">
     <!-- Car Image -->
     <div class="car-image-wrapper position-relative overflow-hidden">
@@ -56,7 +56,7 @@
                 <div class="col-4">
                     <div class="feature-item text-center">
                         <i class="fas fa-gas-pump text-primary mb-1"></i>
-                        <div class="text-muted small">{{ .Params.engine.type }}</div>
+                        <div class="text-muted small">{{ .Params.fuel_type }}</div>
                     </div>
                 </div>
                 <div class="col-4">
