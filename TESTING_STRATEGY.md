@@ -6,7 +6,7 @@ Hugo генерирует статические сайты, поэтому те
 
 ### Что тестируем:
 - ✅ **Сборка Hugo** - корректность генерации
-- ✅ **Контент** - валидность Markdown и данных  
+- ✅ **Контент** - валидность Markdown и данных
 - ✅ **Frontend JavaScript** - фильтры, поиск, Telegram интеграция
 - ✅ **SEO** - метатеги, Schema.org, производительность
 - ✅ **Telegram Bot** - команды и Web App интеграция
@@ -68,16 +68,16 @@ def test_cars_json_structure():
     """Проверка структуры JSON данных автомобилей"""
     with open('hugo-site/data/cars.json', 'r', encoding='utf-8') as f:
         cars = json.load(f)
-    
+
     assert isinstance(cars, list), "cars.json должен содержать массив"
     assert len(cars) > 0, "Должен быть хотя бы один автомобиль"
-    
+
     required_fields = ['brand', 'model', 'year', 'price', 'images']
-    
+
     for i, car in enumerate(cars):
         for field in required_fields:
             assert field in car, f"Автомобиль {i}: отсутствует поле {field}"
-        
+
         # Проверка типов данных
         assert isinstance(car['year'], int), f"Автомобиль {i}: year должен быть числом"
         assert isinstance(car['price'], (int, float)), f"Автомобиль {i}: price должен быть числом"
@@ -88,27 +88,27 @@ def test_markdown_files():
     """Проверка Markdown файлов автомобилей"""
     cars_dir = Path('hugo-site/content/cars')
     markdown_files = list(cars_dir.glob('*.md'))
-    
+
     assert len(markdown_files) > 0, "Должны быть Markdown файлы автомобилей"
-    
+
     for md_file in markdown_files:
         if md_file.name == '_index.md':
             continue
-            
+
         content = md_file.read_text(encoding='utf-8')
-        
+
         # Проверка Front Matter
         assert content.startswith('---'), f"{md_file.name}: должен начинаться с Front Matter"
-        
+
         # Извлечение Front Matter
         parts = content.split('---', 2)
         assert len(parts) >= 3, f"{md_file.name}: некорректный Front Matter"
-        
+
         try:
             front_matter = yaml.safe_load(parts[1])
         except yaml.YAMLError as e:
             assert False, f"{md_file.name}: ошибка парсинга YAML: {e}"
-        
+
         # Проверка обязательных полей
         required_fields = ['title', 'brand', 'model', 'year', 'price']
         for field in required_fields:
@@ -118,13 +118,13 @@ def test_images_exist():
     """Проверка существования изображений"""
     with open('hugo-site/data/cars.json', 'r', encoding='utf-8') as f:
         cars = json.load(f)
-    
+
     for car in cars:
         for image_path in car['images']:
             # Убираем ведущий слеш для проверки файла
             local_path = image_path.lstrip('/')
             full_path = f"hugo-site/static/{local_path}"
-            
+
             # Пока пропускаем - изображения добавим позже
             # assert os.path.exists(full_path), f"Изображение не найдено: {full_path}"
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 // tests/frontend/catalog.test.js
 describe('Car Catalog', () => {
   let catalog;
-  
+
   beforeEach(() => {
     // Мокаем HTML структуру
     document.body.innerHTML = `
@@ -156,7 +156,7 @@ describe('Car Catalog', () => {
       <input id="price-min" type="range" min="0" max="10000000">
       <input id="price-max" type="range" min="0" max="10000000">
     `;
-    
+
     // Мокаем данные автомобилей
     global.fetch = jest.fn(() =>
       Promise.resolve({
@@ -170,7 +170,7 @@ describe('Car Catalog', () => {
             permalink: "/cars/bmw-x5-2019/"
           },
           {
-            title: "Mercedes E200 2020", 
+            title: "Mercedes E200 2020",
             brand: "Mercedes",
             model: "E200",
             year: 2020,
@@ -180,36 +180,36 @@ describe('Car Catalog', () => {
         ])
       })
     );
-    
+
     catalog = new CarCatalog();
   });
-  
+
   test('должен загружать автомобили', async () => {
     await catalog.loadCars();
     expect(catalog.cars).toHaveLength(2);
     expect(catalog.cars[0].brand).toBe('BMW');
   });
-  
+
   test('должен фильтровать по марке', async () => {
     await catalog.loadCars();
     catalog.filter('brand', 'BMW');
-    
+
     expect(catalog.filteredCars).toHaveLength(1);
     expect(catalog.filteredCars[0].brand).toBe('BMW');
   });
-  
+
   test('должен фильтровать по цене', async () => {
     await catalog.loadCars();
     catalog.filter('priceMax', 2800000);
-    
+
     expect(catalog.filteredCars).toHaveLength(1);
     expect(catalog.filteredCars[0].price).toBeLessThanOrEqual(2800000);
   });
-  
+
   test('должен искать автомобили', async () => {
     await catalog.loadCars();
     catalog.search('BMW');
-    
+
     expect(catalog.filteredCars).toHaveLength(1);
     expect(catalog.filteredCars[0].brand).toBe('BMW');
   });
@@ -243,29 +243,29 @@ describe('Telegram Integration', () => {
       }
     };
   });
-  
+
   test('должен инициализировать Telegram Web App', () => {
     // Имитируем загрузку скрипта
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-web-app.js';
     document.head.appendChild(script);
-    
+
     // Инициализация
     window.Telegram.WebApp.ready();
     window.Telegram.WebApp.expand();
-    
+
     expect(window.Telegram.WebApp.ready).toHaveBeenCalled();
     expect(window.Telegram.WebApp.expand).toHaveBeenCalled();
   });
-  
+
   test('должен адаптировать тему под Telegram', () => {
     window.Telegram.WebApp.colorScheme = 'dark';
-    
+
     // Симулируем применение темы
     if (window.Telegram.WebApp.colorScheme === 'dark') {
       document.documentElement.classList.add('dark');
     }
-    
+
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
 });
@@ -287,7 +287,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../../bot'))
 from main import start_command, help_command, catalog_command, contact_command
 
 class TestTelegramBot:
-    
+
     @pytest.fixture
     def mock_message(self):
         """Мок сообщения от пользователя"""
@@ -296,56 +296,56 @@ class TestTelegramBot:
         message.from_user.id = 12345
         message.from_user.username = "testuser"
         return message
-    
+
     @pytest.mark.asyncio
     async def test_start_command(self, mock_message):
         """Тест команды /start"""
         await start_command(mock_message)
-        
+
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        
+
         # Проверяем текст ответа
         assert "Добро пожаловать" in call_args[0][0]
-        
+
         # Проверяем наличие клавиатуры
         assert call_args[1]['reply_markup'] is not None
-    
+
     @pytest.mark.asyncio
     async def test_help_command(self, mock_message):
         """Тест команды /help"""
         await help_command(mock_message)
-        
+
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        
+
         # Проверяем что в ответе есть список команд
         response_text = call_args[0][0]
         assert "/start" in response_text
         assert "/catalog" in response_text
         assert "/contact" in response_text
         assert "/help" in response_text
-    
+
     @pytest.mark.asyncio
     async def test_catalog_command(self, mock_message):
         """Тест команды /catalog"""
         await catalog_command(mock_message)
-        
+
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        
+
         # Проверяем текст и клавиатуру
         assert "каталог" in call_args[0][0].lower()
         assert call_args[1]['reply_markup'] is not None
-    
-    @pytest.mark.asyncio 
+
+    @pytest.mark.asyncio
     async def test_contact_command(self, mock_message):
         """Тест команды /contact"""
         await contact_command(mock_message)
-        
+
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        
+
         # Проверяем что в ответе есть контактная информация
         response_text = call_args[0][0]
         assert "Телефон" in response_text or "телефон" in response_text
@@ -370,7 +370,7 @@ import json
 import pytest
 
 class TestSEO:
-    
+
     @pytest.fixture
     def soup(self):
         """Загружаем главную страницу для анализа"""
@@ -378,7 +378,7 @@ class TestSEO:
         with open('hugo-site/public/index.html', 'r', encoding='utf-8') as f:
             content = f.read()
         return BeautifulSoup(content, 'html.parser')
-    
+
     def test_title_tag(self, soup):
         """Проверка наличия и корректности title"""
         title = soup.find('title')
@@ -386,41 +386,41 @@ class TestSEO:
         assert len(title.text) > 10, "Тег <title> слишком короткий"
         assert len(title.text) < 60, "Тег <title> слишком длинный"
         assert "автоломбард" in title.text.lower(), "В title отсутствует ключевое слово"
-    
+
     def test_meta_description(self, soup):
         """Проверка meta description"""
         meta_desc = soup.find('meta', attrs={'name': 'description'})
         assert meta_desc is not None, "Отсутствует meta description"
-        
+
         content = meta_desc.get('content', '')
         assert len(content) > 50, "Meta description слишком короткое"
         assert len(content) < 160, "Meta description слишком длинное"
-    
+
     def test_meta_keywords(self, soup):
         """Проверка meta keywords"""
         meta_keywords = soup.find('meta', attrs={'name': 'keywords'})
         assert meta_keywords is not None, "Отсутствует meta keywords"
-        
+
         keywords = meta_keywords.get('content', '').split(',')
         assert len(keywords) >= 3, "Должно быть минимум 3 ключевых слова"
-    
+
     def test_open_graph(self, soup):
         """Проверка Open Graph метатегов"""
         og_title = soup.find('meta', property='og:title')
         og_description = soup.find('meta', property='og:description')
         og_type = soup.find('meta', property='og:type')
         og_url = soup.find('meta', property='og:url')
-        
+
         assert og_title is not None, "Отсутствует og:title"
         assert og_description is not None, "Отсутствует og:description"
         assert og_type is not None, "Отсутствует og:type"
         assert og_url is not None, "Отсутствует og:url"
-    
+
     def test_structured_data(self, soup):
         """Проверка Schema.org разметки"""
         scripts = soup.find_all('script', type='application/ld+json')
         assert len(scripts) > 0, "Отсутствует структурированная разметка"
-        
+
         for script in scripts:
             try:
                 data = json.loads(script.string)
@@ -433,17 +433,17 @@ def test_car_page_seo():
     """Проверка SEO на странице автомобиля"""
     car_files = list(Path('hugo-site/public/cars').glob('*/index.html'))
     assert len(car_files) > 0, "Не найдены страницы автомобилей"
-    
+
     # Тестируем первую найденную страницу
     with open(car_files[0], 'r', encoding='utf-8') as f:
         content = f.read()
-    
+
     soup = BeautifulSoup(content, 'html.parser')
-    
+
     # Проверяем Schema.org для автомобиля
     car_schema = soup.find('script', type='application/ld+json')
     assert car_schema is not None, "Отсутствует Schema.org для автомобиля"
-    
+
     schema_data = json.loads(car_schema.string)
     assert schema_data.get('@type') == 'Car', "Некорректный тип Schema.org"
     assert 'brand' in schema_data, "Отсутствует марка в Schema.org"
@@ -459,7 +459,7 @@ const { chromium, firefox, webkit } = require('playwright');
 
 describe('Responsive Design Tests', () => {
   let browsers = [];
-  
+
   beforeAll(async () => {
     // Запускаем тесты в разных браузерах
     browsers = await Promise.all([
@@ -468,17 +468,17 @@ describe('Responsive Design Tests', () => {
       webkit.launch()
     ]);
   });
-  
+
   afterAll(async () => {
     await Promise.all(browsers.map(browser => browser.close()));
   });
-  
+
   const devices = [
     { name: 'Desktop', width: 1920, height: 1080 },
     { name: 'Tablet', width: 768, height: 1024 },
     { name: 'Mobile', width: 375, height: 667 }
   ];
-  
+
   devices.forEach(device => {
     test(`должен корректно отображаться на ${device.name}`, async () => {
       for (const browser of browsers) {
@@ -486,37 +486,37 @@ describe('Responsive Design Tests', () => {
           viewport: { width: device.width, height: device.height }
         });
         const page = await context.newPage();
-        
+
         await page.goto('http://localhost:1313');
-        
+
         // Проверяем что страница загрузилась
         await page.waitForSelector('body');
-        
+
         // Проверяем что каталог автомобилей виден
         const carsGrid = await page.$('.cars-grid, #cars-container');
         expect(carsGrid).toBeTruthy();
-        
+
         // Проверяем что фильтры доступны
         const filters = await page.$('.filters-section, .filter-container');
         expect(filters).toBeTruthy();
-        
+
         // Проверяем что нет горизонтального скролла
         const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
         const windowWidth = await page.evaluate(() => window.innerWidth);
         expect(bodyWidth).toBeLessThanOrEqual(windowWidth);
-        
+
         await context.close();
       }
     });
   });
-  
+
   test('должен поддерживать Telegram Web App', async () => {
     const browser = await chromium.launch();
     const context = await browser.newContext({
       userAgent: 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 TelegramBot'
     });
     const page = await context.newPage();
-    
+
     // Мокаем Telegram Web App API
     await page.evaluateOnNewDocument(() => {
       window.Telegram = {
@@ -528,13 +528,13 @@ describe('Responsive Design Tests', () => {
         }
       };
     });
-    
+
     await page.goto('http://localhost:1313');
-    
+
     // Проверяем что Telegram скрипт подключен
     const telegramScript = await page.$('script[src*="telegram-web-app.js"]');
     expect(telegramScript).toBeTruthy();
-    
+
     await browser.close();
   });
 });
@@ -580,60 +580,60 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
       with:
         submodules: true
-    
+
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: 'latest'
         extended: true
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-    
+
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: Install dependencies
       run: |
         npm install
         pip install pytest pytest-asyncio pyyaml beautifulsoup4
-    
+
     - name: Run build tests
       run: npm run test:build
-    
+
     - name: Run content tests
       run: npm run test:content
-    
+
     - name: Run frontend tests
       run: npm run test:frontend
-    
+
     - name: Run bot tests
       run: npm run test:bot
-    
+
     - name: Install Playwright browsers
       run: npx playwright install
-    
+
     - name: Start Hugo server
       run: |
         cd hugo-site
         hugo server &
         sleep 5
-    
+
     - name: Run visual tests
       run: npm run test:visual
-    
+
     - name: Run Lighthouse
       run: npm run lighthouse
-    
+
     - name: Upload test reports
       uses: actions/upload-artifact@v3
       with:
@@ -645,7 +645,7 @@ jobs:
 
 ### Критерии приемки:
 - ✅ **Build Tests**: Сборка без ошибок
-- ✅ **Content Tests**: 100% валидных данных  
+- ✅ **Content Tests**: 100% валидных данных
 - ✅ **Frontend Tests**: Покрытие >80%
 - ✅ **Bot Tests**: Все команды работают
 - ✅ **SEO Tests**: Lighthouse Score >95
@@ -666,7 +666,7 @@ jobs:
 - ✅ Настройка тестовой среды
 - ✅ Build tests
 
-**День 2** (4-5 часов): Функциональность + **функциональные тесты** 
+**День 2** (4-5 часов): Функциональность + **функциональные тесты**
 - ✅ Кастомизация + Telegram интеграция
 - ✅ Frontend tests + Bot tests
 
