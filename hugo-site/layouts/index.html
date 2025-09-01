@@ -1,0 +1,132 @@
+{{ define "title" }}{{ .Site.Title }} - Лучшие автомобили{{ end }}
+
+{{ define "main" }}
+
+<!-- Hero Section with Search -->
+<section class="hero-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <!-- Hero Title -->
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold text-white mb-3">
+                        Найдите свой идеальный автомобиль
+                    </h1>
+                    <p class="lead text-white-50 mb-4">
+                        Большой выбор качественных автомобилей по честным ценам
+                    </p>
+                </div>
+
+                <!-- Search Form -->
+                <div class="search-card p-4 p-lg-5 rounded-4 shadow-lg bg-white">
+                    <form action="{{ "cars/" | relURL }}" method="GET" class="car-search-form">
+                        <div class="row g-3">
+                            <!-- Марка -->
+                            <div class="col-md-5">
+                                <div class="form-floating">
+                                    <select class="form-select" id="brand" name="brand">
+                                        <option value="" selected disabled hidden></option>
+                                        {{ range .Site.Taxonomies.brands }}
+                                        <option value="{{ .Page.Title }}">{{ .Page.Title }}</option>
+                                        {{ end }}
+                                    </select>
+                                    <label for="brand">Марка автомобиля</label>
+                                </div>
+                            </div>
+
+                            <!-- Модель -->
+                            <div class="col-md-5">
+                                <div class="form-floating">
+                                    <select class="form-select" id="model" name="model" disabled>
+                                        <option value="" selected disabled hidden></option>
+                                        <option value="">Сначала выберите марку</option>
+                                    </select>
+                                    <label for="model">Модель</label>
+                                </div>
+                            </div>
+
+                            <!-- Кнопка поиска -->
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 h-100 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-search me-2"></i>
+                                    <span class="d-none d-md-inline">Поиск</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Filters Toggle -->
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
+                                <i class="fas fa-filter me-2"></i>
+                                Расширенные фильтры
+                            </button>
+                        </div>
+
+                        <!-- Advanced Filters -->
+                        <div class="collapse mt-4" id="advancedFilters">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="year_from" name="year_from" placeholder="2000">
+                                        <label for="year_from">Год от</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="year_to" name="year_to" placeholder="2024">
+                                        <label for="year_to">Год до</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="price_from" name="price_from" placeholder="500000">
+                                        <label for="price_from">Цена от, ₽</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="price_to" name="price_to" placeholder="3000000">
+                                        <label for="price_to">Цена до, ₽</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Cars -->
+<section class="featured-cars py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Наши автомобили</h2>
+                <p class="lead text-muted">Выберите автомобиль из нашего каталога</p>
+            </div>
+        </div>
+
+        <!-- Car Grid -->
+        <div class="row g-4">
+            {{ range first .Site.Params.featured_cars_count (where .Site.RegularPages "Section" "cars") }}
+            <div class="col-lg-4 col-md-6">
+                {{ partial "car-card.html" . }}
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- View All Button -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{{ "cars/" | relURL }}" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-cars me-2"></i>
+                    Посмотреть все автомобили ({{ len (where .Site.RegularPages "Section" "cars") }})
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ end }}

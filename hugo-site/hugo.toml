@@ -1,0 +1,141 @@
+######################## default configuration ####################
+baseURL = 'https://andrejmer.github.io/tg_bot_auto_lombard'
+languageCode = 'ru-RU'
+title = 'Автоломбард - Каталог автомобилей'
+# theme = 'liva' # Используем кастомные layouts
+summaryLength = "15"
+pagination.pagerSize = 12
+disqusShortname = ""
+
+# Taxonomies для фильтрации автомобилей
+[taxonomies]
+  brand = "brands"
+  body_type = "body_types"
+  fuel_type = "fuel_types"
+  condition = "conditions"
+  tag = "tags"
+  category = "categories"
+
+# Форматы вывода
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Меню навигации
+[menu]
+  [[menu.main]]
+    name = "Главная"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Каталог автомобилей"
+    url = "/cars/"
+    weight = 2
+
+  [[menu.main]]
+    name = "О нас"
+    url = "/about/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Контакты"
+    url = "/contact/"
+    weight = 4
+
+#################### default parameters ################################
+[params]
+  logo = "images/logo.svg"
+  favicon = ""
+  home = "Главная"
+
+  # Meta data
+  description = "Лучшие автомобили в автоломбарде. Большой выбор, честные цены, гарантия качества."
+  author = "Автоломбард"
+  keywords = ["автоломбард", "автомобили", "купить авто", "б/у машины"]
+
+  # Contact Information
+  phone = "+7 (999) 123-45-67"
+  email = "info@auto-lombard.ru"
+  address = "Москва, ул. Примерная, 123"
+  work_hours = "ПН-ВС с 9:00 до 21:00"
+
+  # Telegram Integration
+  telegram_integration = true
+  telegram_bot_name = "auto_lombard_bot"
+  telegram_bot = "@auto_lombard_bot"
+
+  # Catalog settings
+  cars_per_page = 12
+  featured_cars_count = 6
+
+  # copyright
+  copyright = "© 2024 Автоломбард. Все права защищены."
+
+############################# Plugins ##############################
+[params.plugins]
+
+# CSS Plugins
+[[params.plugins.css]]
+URL = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+URL = "plugins/slick/slick.css"
+[[params.plugins.css]]
+URL = "plugins/themify-icons/themify-icons.css"
+[[params.plugins.css]]
+URL = "plugins/venobox/venobox.css"
+[[params.plugins.css]]
+URL = "css/custom.css"
+
+# JS Plugins
+[[params.plugins.js]]
+URL = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+URL = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+URL = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+URL = "plugins/venobox/venobox.min.js"
+[[params.plugins.js]]
+URL = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+URL = "plugins/search/mark.js"
+[[params.plugins.js]]
+URL = "plugins/search/search.js"
+
+# Preloader
+[params.preloader]
+  enable = true
+  preloader = ""
+
+# Search
+[params.search]
+  enable = true
+
+# Newsletter (отключаем пока)
+[params.newsletter]
+  enable = false
+
+# Cookies
+[params.cookies]
+  enable = true
+  expire_days = 30
+
+############################# Social Media ########################
+[[params.social]]
+  title = "telegram"
+  icon = "ti-comment"
+  link = "https://t.me/auto_lombard_bot"
+
+[[params.social]]
+  title = "phone"
+  icon = "ti-mobile"
+  link = "tel:+79991234567"
+
+[[params.social]]
+  title = "email"
+  icon = "ti-email"
+  link = "mailto:info@auto-lombard.ru"

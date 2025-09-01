@@ -1,0 +1,82 @@
+<!-- Car Card Component -->
+<div class="car-card card h-100 border-0 shadow-sm"
+     data-brand="{{ .Params.brand }}"
+     data-model="{{ .Params.model }}"
+     data-year="{{ .Params.year }}"
+     data-price="{{ .Params.price }}"
+     data-mileage="{{ .Params.mileage }}"
+     data-engine="{{ .Params.engine.type }}"
+     data-transmission="{{ .Params.transmission }}"
+     data-body="{{ .Params.body }}"
+     data-fuel="{{ .Params.engine.type }}"
+     data-condition="{{ .Params.condition }}">
+    <!-- Car Image -->
+    <div class="car-image-wrapper position-relative overflow-hidden">
+        {{ $image := index .Params.images 0 | default "images/cars/placeholder.svg" }}
+        <img src="{{ $image | relURL }}" class="card-img-top" alt="{{ .Title }}">
+
+        <!-- Status Badge -->
+        {{ if .Params.condition }}
+        <span class="badge bg-success position-absolute top-0 start-0 m-3">
+            {{ .Params.condition }}
+        </span>
+        {{ end }}
+
+        <!-- Price Badge -->
+        <div class="price-badge position-absolute top-0 end-0 m-3">
+            <span class="badge bg-primary fs-6 fw-bold">
+                {{ .Params.price | lang.FormatNumber 0 }} ₽
+            </span>
+        </div>
+    </div>
+
+    <!-- Car Info -->
+    <div class="card-body p-4">
+        <!-- Title -->
+        <h5 class="card-title mb-2">
+            <a href="{{ .Permalink }}" class="text-decoration-none text-dark">
+                {{ .Title }}
+            </a>
+        </h5>
+
+        <!-- Subtitle -->
+        <p class="text-muted mb-3">
+            {{ .Params.brand }} {{ .Params.model }} • {{ .Params.year }} год
+        </p>
+
+        <!-- Key Features -->
+        <div class="car-features mb-3">
+            <div class="row g-2 text-sm">
+                <div class="col-4">
+                    <div class="feature-item text-center">
+                        <i class="fas fa-tachometer-alt text-primary mb-1"></i>
+                        <div class="text-muted small">{{ .Params.mileage | lang.FormatNumber 0 }} км</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="feature-item text-center">
+                        <i class="fas fa-gas-pump text-primary mb-1"></i>
+                        <div class="text-muted small">{{ .Params.engine.type }}</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="feature-item text-center">
+                        <i class="fas fa-cog text-primary mb-1"></i>
+                        <div class="text-muted small">{{ .Params.transmission }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex gap-2">
+            <a href="{{ .Permalink }}" class="btn btn-primary flex-fill">
+                <i class="fas fa-info-circle me-1"></i>
+                Подробнее
+            </a>
+            <a href="tel:{{ .Site.Params.phone }}" class="btn btn-outline-primary">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+    </div>
+</div>

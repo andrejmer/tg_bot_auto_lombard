@@ -1,0 +1,31 @@
+{{/*
+Партиал для отображения изображений
+Параметры:
+- Src: путь к изображению
+- Alt: альтернативный текст
+- Class: CSS классы
+- Width: ширина
+- Height: высота
+*/}}
+
+{{- $src := .Src -}}
+{{- $alt := .Alt | default "Image" -}}
+{{- $class := .Class | default "" -}}
+{{- $width := .Width -}}
+{{- $height := .Height -}}
+
+{{- if $src -}}
+  <img
+    src="{{ $src | relURL }}"
+    alt="{{ $alt }}"
+    {{- if $class }} class="{{ $class }}"{{ end }}
+    {{- if $width }} width="{{ $width }}"{{ end }}
+    {{- if $height }} height="{{ $height }}"{{ end }}
+    loading="lazy"
+  >
+{{- else -}}
+  <!-- Заглушка если нет изображения -->
+  <div class="{{ $class }} bg-light d-flex align-items-center justify-content-center" style="min-height: 50px;">
+    <span class="text-muted">{{ $alt }}</span>
+  </div>
+{{- end -}}

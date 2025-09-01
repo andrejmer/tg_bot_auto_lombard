@@ -1,0 +1,286 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+
+<!-- Page Header -->
+<section class="page-header py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ "/" | relURL }}">Главная</a></li>
+                        <li class="breadcrumb-item active">{{ .Title }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold mb-2">{{ .Title }}</h1>
+                <p class="lead text-muted">
+                    Найдено {{ len .Pages }} автомобилей
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filters Section -->
+<section class="filters-section py-4 bg-white border-bottom">
+    <div class="container">
+        <form method="GET" action="{{ .RelPermalink }}" class="filters-form">
+            <div class="row g-3 align-items-end">
+                <!-- Brand Filter -->
+                <div class="col-md-2">
+                    <label for="brand" class="form-label small fw-bold">Марка</label>
+                    <select class="form-select" id="brand" name="brand">
+                        <option value="">Все марки</option>
+                        {{ range .Site.Taxonomies.brands }}
+                        <option value="{{ .Page.Title }}" {{ if eq $.Params.brand .Page.Title }}selected{{ end }}>
+                            {{ .Page.Title }} ({{ .Count }})
+                        </option>
+                        {{ end }}
+                    </select>
+                </div>
+
+                <!-- Model Filter -->
+                <div class="col-md-2">
+                    <label for="model" class="form-label small fw-bold">Модель</label>
+                    <select class="form-select" id="model" name="model" disabled>
+                        <option value="">Все модели</option>
+                    </select>
+                </div>
+
+                <!-- Price From -->
+                <div class="col-md-2">
+                    <label for="price_from" class="form-label small fw-bold">Цена от</label>
+                    <input type="number" class="form-control" id="price_from" name="price_from"
+                           placeholder="500 000" value="{{ $.Params.price_from }}">
+                </div>
+
+                <!-- Price To -->
+                <div class="col-md-2">
+                    <label for="price_to" class="form-label small fw-bold">Цена до</label>
+                    <input type="number" class="form-control" id="price_to" name="price_to"
+                           placeholder="3 000 000" value="{{ $.Params.price_to }}">
+                </div>
+
+                <!-- Year From -->
+                <div class="col-md-2">
+                    <label for="year_from" class="form-label small fw-bold">Год от</label>
+                    <input type="number" class="form-control" id="year_from" name="year_from"
+                           placeholder="2000" value="{{ $.Params.year_from }}">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-1"></i>
+                        Найти
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional Filters Row -->
+            <div class="row g-3 mt-2">
+                <!-- Year To -->
+                <div class="col-md-2">
+                    <label for="year_to" class="form-label small fw-bold">Год до</label>
+                    <input type="number" class="form-control" id="year_to" name="year_to"
+                           placeholder="2024" value="{{ $.Params.year_to }}">
+                </div>
+
+                <!-- Body Type -->
+                <div class="col-md-2">
+                    <label for="body_type" class="form-label small fw-bold">Тип кузова</label>
+                    <select class="form-select" id="body_type" name="body_type">
+                        <option value="">Любой</option>
+                        {{ range .Site.Taxonomies.body_types }}
+                        <option value="{{ .Page.Title }}" {{ if eq $.Params.body_type .Page.Title }}selected{{ end }}>
+                            {{ .Page.Title }}
+                        </option>
+                        {{ end }}
+                    </select>
+                </div>
+
+                <!-- Fuel Type -->
+                <div class="col-md-2">
+                    <label for="fuel_type" class="form-label small fw-bold">Топливо</label>
+                    <select class="form-select" id="fuel_type" name="fuel_type">
+                        <option value="">Любое</option>
+                        {{ range .Site.Taxonomies.fuel_types }}
+                        <option value="{{ .Page.Title }}" {{ if eq $.Params.fuel_type .Page.Title }}selected{{ end }}>
+                            {{ .Page.Title }}
+                        </option>
+                        {{ end }}
+                    </select>
+                </div>
+
+                <!-- Transmission -->
+                <div class="col-md-2">
+                    <label for="transmission" class="form-label small fw-bold">КПП</label>
+                    <select class="form-select" id="transmission" name="transmission">
+                        <option value="">Любая</option>
+                        <option value="AT" {{ if eq $.Params.transmission "AT" }}selected{{ end }}>AT</option>
+                        <option value="механическая" {{ if eq $.Params.transmission "механическая" }}selected{{ end }}>Механическая</option>
+                        <option value="вариатор" {{ if eq $.Params.transmission "вариатор" }}selected{{ end }}>Вариатор</option>
+                        <option value="робот" {{ if eq $.Params.transmission "робот" }}selected{{ end }}>Робот</option>
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                <div class="col-md-2">
+                    <label for="sort" class="form-label small fw-bold">Сортировка</label>
+                    <select class="form-select" id="sort" name="sort">
+                        <option value="price_asc">Цена ↑</option>
+                        <option value="price_desc">Цена ↓</option>
+                        <option value="year_desc">Год ↓</option>
+                        <option value="mileage_asc">Пробег ↑</option>
+                    </select>
+                </div>
+
+                <!-- Reset -->
+                <div class="col-md-2">
+                    <label class="form-label small">&nbsp;</label>
+                    <a href="{{ .RelPermalink }}" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-times me-1"></i>
+                        Сбросить
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Cars Grid -->
+<section class="cars-grid py-5">
+    <div class="container">
+        <!-- Results Summary -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="text-muted mb-0 results-count">
+                        Показано {{ len .Pages }} из {{ len (where .Site.RegularPages "Section" "cars") }} автомобилей
+                    </h5>
+                    <div class="results-per-page">
+                        <label class="form-label small me-2">Быстрые фильтры:</label>
+                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(0, 2000000)">До 2 млн</button>
+                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(2000000, 3000000)">2-3 млн</button>
+                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(3000000, 0)">От 3 млн</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="carFilter.resetFilters()">Сбросить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cars Grid -->
+        {{ if .Pages }}
+        <div class="row g-4" id="cars-container">
+            {{ $paginator := .Paginate .Pages }}
+            {{ range $paginator.Pages }}
+            <div class="col-lg-4 col-md-6">
+                {{ partial "car-card.html" . }}
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- Pagination -->
+        {{ if gt $paginator.TotalPages 1 }}
+        <div class="row mt-5">
+            <div class="col-12">
+                <nav aria-label="Навигация по страницам">
+                    <ul class="pagination justify-content-center">
+                        {{ if $paginator.HasPrev }}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $paginator.Prev.URL }}">
+                                <i class="fas fa-chevron-left"></i>
+                                Предыдущая
+                            </a>
+                        </li>
+                        {{ end }}
+
+                        {{ range $paginator.Pagers }}
+                        <li class="page-item {{ if eq . $paginator }}active{{ end }}">
+                            <a class="page-link" href="{{ .URL }}">{{ .PageNumber }}</a>
+                        </li>
+                        {{ end }}
+
+                        {{ if $paginator.HasNext }}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $paginator.Next.URL }}">
+                                Следующая
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ else }}
+        <!-- No Results -->
+        <div class="row">
+            <div class="col-12 text-center py-5">
+                <div class="no-results">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4>Автомобили не найдены</h4>
+                    <p class="text-muted">Попробуйте изменить параметры поиска</p>
+                    <a href="{{ .RelPermalink }}" class="btn btn-primary">
+                        Сбросить фильтры
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- About Section -->
+{{ if .Content }}
+<section class="about-catalog py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<script>
+// View toggle functionality
+document.querySelectorAll('[data-view]').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const view = this.dataset.view;
+        const container = document.getElementById('cars-container');
+
+        // Toggle active state
+        document.querySelectorAll('[data-view]').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Change grid layout
+        if (view === 'list') {
+            container.className = 'row g-3';
+            container.querySelectorAll('.col-lg-4').forEach(col => {
+                col.className = 'col-12';
+            });
+        } else {
+            container.className = 'row g-4';
+            container.querySelectorAll('.col-12').forEach(col => {
+                col.className = 'col-lg-4 col-md-6';
+            });
+        }
+    });
+});
+
+// Change results per page
+function changePerPage(value) {
+    const url = new URL(window.location);
+    url.searchParams.set('limit', value);
+    window.location.href = url.toString();
+}
+</script>
+
+{{ end }}
