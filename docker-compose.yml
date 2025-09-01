@@ -5,7 +5,7 @@ services:
     build: .
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
-      - WEB_APP_URL=https://localhost:8443
+      - WEB_APP_URL=https://purely-picked-koala.ngrok-free.app
     restart: unless-stopped
 
   web:
@@ -17,3 +17,13 @@ services:
     ports:
       - "8443:443"
       - "8080:80"
+
+  tunnel:
+    image: ngrok/ngrok:latest
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: http --domain=purely-picked-koala.ngrok-free.app web:80
+    ports:
+      - "4040:4040"
+    depends_on:
+      - web
