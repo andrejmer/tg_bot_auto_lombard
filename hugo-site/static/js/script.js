@@ -25,13 +25,31 @@ document.addEventListener('DOMContentLoaded', function() {
     let carModelsData = {};
 
     // Fetch car models data
-    fetch('/data/car-models.json')
-        .then(response => response.json())
+    const baseUrl = document.querySelector('meta[name="baseURL"]')?.content || '';
+    fetch(baseUrl + '/data/car-models.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load car models data');
+            }
+            return response.json();
+        })
         .then(data => {
             carModelsData = data;
+            console.log('Car models data loaded successfully');
         })
         .catch(error => {
             console.error('Error loading car models:', error);
+            // Provide fallback data for development
+            carModelsData = {
+                brands: {
+                    "BMW": { name: "BMW", models: ["X1", "X3", "X5", "3 Series", "5 Series"] },
+                    "Mercedes-Benz": { name: "Mercedes-Benz", models: ["A-Class", "C-Class", "E-Class", "GLC", "GLE"] },
+                    "Toyota": { name: "Toyota", models: ["Corolla", "Camry", "RAV4", "LC Prado"] },
+                    "Audi": { name: "Audi", models: ["A3", "A4", "A6", "Q3", "Q5"] },
+                    "Volkswagen": { name: "Volkswagen", models: ["Polo", "Golf", "Tiguan", "Passat"] },
+                    "Hyundai": { name: "Hyundai", models: ["Elantra", "Sonata", "Tucson", "Santa Fe"] }
+                }
+            };
         });
 
     // Brand selection handler

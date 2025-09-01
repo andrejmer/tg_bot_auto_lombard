@@ -11,6 +11,7 @@
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <meta name="keywords" content="{{ delimit .Site.Params.keywords ", " }}">
     <meta name="author" content="{{ .Site.Params.author }}">
+    <meta name="baseURL" content="{{ .Site.BaseURL }}">
 
     <!-- Open Graph -->
     <meta property="og:title" content="{{ .Title }}">
