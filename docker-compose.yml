@@ -5,7 +5,7 @@ services:
     build: .
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
-      - WEB_APP_URL=https://auto-lombard.loca.lt
+      - WEB_APP_URL=https://auto-lombard.serveo.net
     restart: unless-stopped
 
   web:
@@ -19,7 +19,9 @@ services:
       - "8080:80"
 
   tunnel:
-    image: node:alpine
-    command: sh -c "npm install -g localtunnel && lt --port 80 --subdomain auto-lombard --local-host web"
+    image: alpine:latest
+    command: >
+      sh -c "apk add --no-cache openssh &&
+             ssh -o StrictHostKeyChecking=no -R auto-lombard:80:web:80 serveo.net"
     depends_on:
       - web
