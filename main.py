@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 
 # Получаем токен бота из переменной окружения
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+WEB_APP_URL = os.getenv("WEB_APP_URL", "https://localhost:8443")
+
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN не установлен!")
 
@@ -23,8 +25,7 @@ dp = Dispatcher()
 
 # Создаем клавиатуру с веб-приложением
 def get_keyboard():
-    # URL вашего веб-приложения (замените на актуальный после деплоя)
-    web_app = WebAppInfo(url="http://localhost:8080")
+    web_app = WebAppInfo(url=WEB_APP_URL)
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton(text="🚗 Открыть каталог автомобилей", web_app=web_app)]],
         resize_keyboard=True
