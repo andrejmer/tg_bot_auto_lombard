@@ -88,7 +88,7 @@
       <option value="mercedes">Mercedes-Benz</option>
     </select>
   </div>
-  
+
   <div class="filter-group">
     <h3>Цена</h3>
     <input type="range" name="price-min" min="0" max="10000000">
@@ -134,18 +134,18 @@ class CarCatalog {
     this.filters = {};
     this.init();
   }
-  
+
   async loadCars() {
     const response = await fetch('/data/cars.json');
     this.cars = await response.json();
   }
-  
+
   filterCars() {
     return this.cars.filter(car => {
       // Логика фильтрации
     });
   }
-  
+
   renderCars(cars) {
     // Отрисовка карточек
   }
@@ -179,7 +179,7 @@ def get_webapp_keyboard():
     web_app = WebAppInfo(url="https://your-domain.com")
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton(
-            text="🚗 Открыть каталог", 
+            text="🚗 Открыть каталог",
             web_app=web_app
         )]],
         resize_keyboard=True
