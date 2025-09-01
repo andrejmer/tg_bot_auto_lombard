@@ -13,7 +13,7 @@ def create_car_file(car_data):
 
     # Генерируем имя файла
     filename = f"{car_data['brand'].lower().replace('-', '').replace(' ', '-')}-{car_data['model'].lower().replace(' ', '-').replace('/', '-')}-{car_data['year']}.md"
-    filepath = Path("hugo-site/content/cars") / filename
+    filepath = Path("../hugo-site/content/cars") / filename
 
     # Шаблон файла
     template = f"""---

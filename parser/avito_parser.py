@@ -190,7 +190,7 @@ class AvitoParser:
 
         return details
 
-    def download_image(self, image_url: str, filename: str, images_dir: str = "hugo-site/static/images/cars") -> bool:
+    def download_image(self, image_url: str, filename: str, images_dir: str = "../hugo-site/static/images/cars") -> bool:
         """Загрузка изображения с Авито"""
         try:
             # Создаем директорию если не существует
@@ -371,7 +371,7 @@ class AvitoParser:
             if self.driver:
                 self.driver.quit()
 
-    def save_to_hugo(self, output_dir: str = "hugo-site/content/cars"):
+    def save_to_hugo(self, output_dir: str = "../hugo-site/content/cars"):
         """Сохранение в формате Hugo"""
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)

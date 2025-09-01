@@ -45,14 +45,14 @@ def main():
             answer = input("\n💾 Сохранить в Hugo каталог? (y/n): ").lower()
 
             if answer in ['y', 'yes', 'да', 'д']:
-                parser.save_to_hugo()
+                parser.save_to_hugo("../hugo-site/content/cars")
                 parser.save_to_json()
 
                 print("\n🎉 Готово!")
-                print("📁 Файлы созданы в: hugo-site/content/cars/")
+                print("📁 Файлы созданы в: ../hugo-site/content/cars/")
                 print("📊 JSON сохранен в: avito_cars.json")
                 print("\n📝 Следующие шаги:")
-                print("1. hugo --source hugo-site")
+                print("1. cd .. && hugo --source hugo-site")
                 print("2. git add . && git commit -m 'Add cars from Avito'")
                 print("3. git push")
             else:
