@@ -218,10 +218,10 @@ params:
   phone: '+7 (999) 123-45-67'
   email: 'info@auto-lombard.ru'
   address: 'Москва, ул. Примерная, 123'
-  
+
   telegram_integration: true
   telegram_bot: '@auto_lombard_bot'
-  
+
   cars_per_page: 12
   featured_cars_count: 6
 
@@ -234,7 +234,7 @@ menu:
   main:
     - name: 'Главная'
       url: '/'
-    - name: 'Каталог'  
+    - name: 'Каталог'
       url: '/cars/'
     - name: 'О нас'
       url: '/about/'
@@ -314,7 +314,7 @@ def get_webapp_keyboard():
     web_app = WebAppInfo(url=WEB_APP_URL)
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton(
-            text="🚗 Открыть каталог автомобилей", 
+            text="🚗 Открыть каталог автомобилей",
             web_app=web_app
         )]],
         resize_keyboard=True
@@ -433,13 +433,13 @@ from datetime import datetime
 def convert_cars_to_hugo():
     with open('web/assets/data/cars.json', 'r', encoding='utf-8') as f:
         cars = json.load(f)
-    
+
     os.makedirs('hugo-site/content/cars', exist_ok=True)
-    
+
     for car in cars:
         filename = f"{car['brand'].lower()}-{car['model'].lower()}-{car['year']}.md"
         filename = filename.replace(' ', '-')
-        
+
         content = f"""---
 title: "{car['brand']} {car['model']} {car['year']}"
 date: {car['created_at']}
@@ -486,7 +486,7 @@ fuel_types: ["{car['engine']['type']}"]
 
 {car['description']}
 """
-        
+
         with open(f'hugo-site/content/cars/{filename}', 'w', encoding='utf-8') as f:
             f.write(content)
 

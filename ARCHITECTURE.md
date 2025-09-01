@@ -191,7 +191,7 @@ featured: true
    web_app = WebAppInfo(url="https://auto-lombard.ru")
    keyboard = ReplyKeyboardMarkup(
        keyboard=[[KeyboardButton(
-           text="🚗 Каталог автомобилей", 
+           text="🚗 Каталог автомобилей",
            web_app=web_app
        )]],
        resize_keyboard=True
@@ -226,15 +226,15 @@ params:
   phone: '+7 (999) 123-45-67'
   email: 'info@auto-lombard.ru'
   address: 'Москва, ул. Примерная, 123'
-  
+
   # Telegram
   telegram_integration: true
   telegram_bot: '@auto_lombard_bot'
-  
+
   # Каталог
   cars_per_page: 12
   featured_cars_count: 6
-  
+
   # SEO
   google_analytics: 'G-XXXXXXXXXX'
 
