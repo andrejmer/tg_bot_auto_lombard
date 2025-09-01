@@ -141,8 +141,32 @@
   transform: translateY(-1px);
 }
 
-/* Адаптивность */
+/* Мобильная оптимизация фильтров */
+.mobile-filter-toggle {
+  display: none;
+}
+
+.additional-filters {
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 768px) {
+  /* Показать кнопку "Дополнительные фильтры" на мобильных */
+  .mobile-filter-toggle {
+    display: block !important;
+    margin-top: 0;
+  }
+
+  /* Скрыть дополнительные фильтры на мобильных по умолчанию */
+  .additional-filters {
+    display: none;
+  }
+
+  .additional-filters.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+  }
+
   .filters-section .form-control {
     margin-bottom: 15px;
     font-size: 16px; /* Предотвращает зум на iOS */
@@ -168,6 +192,26 @@
 
   .card-title {
     font-size: 16px;
+  }
+
+  /* Убираем быстрые фильтры на мобильных */
+  .results-per-page {
+    display: none !important;
+  }
+
+  .results-count {
+    font-size: 14px;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

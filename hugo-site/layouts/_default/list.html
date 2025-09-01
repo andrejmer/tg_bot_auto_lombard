@@ -26,9 +26,10 @@
 <section class="filters-section py-4 bg-white border-bottom">
     <div class="container">
         <form method="GET" action="{{ .RelPermalink }}" class="filters-form">
+            <!-- Основные фильтры (всегда видны) -->
             <div class="row g-3 align-items-end">
                 <!-- Brand Filter -->
-                <div class="col-md-2">
+                <div class="col-md-3 col-6">
                     <label for="brand" class="form-label small fw-bold">Марка</label>
                     <select class="form-select" id="brand" name="brand">
                         <option value="">Все марки</option>
@@ -41,108 +42,136 @@
                 </div>
 
                 <!-- Model Filter -->
-                <div class="col-md-2">
+                <div class="col-md-3 col-6">
                     <label for="model" class="form-label small fw-bold">Модель</label>
                     <select class="form-select" id="model" name="model" disabled>
                         <option value="">Все модели</option>
                     </select>
                 </div>
 
-                <!-- Price From -->
-                <div class="col-md-2">
-                    <label for="price_from" class="form-label small fw-bold">Цена от</label>
-                    <input type="number" class="form-control" id="price_from" name="price_from"
-                           placeholder="500 000" value="{{ $.Params.price_from }}">
-                </div>
-
-                <!-- Price To -->
-                <div class="col-md-2">
-                    <label for="price_to" class="form-label small fw-bold">Цена до</label>
-                    <input type="number" class="form-control" id="price_to" name="price_to"
-                           placeholder="3 000 000" value="{{ $.Params.price_to }}">
-                </div>
-
-                <!-- Year From -->
-                <div class="col-md-2">
-                    <label for="year_from" class="form-label small fw-bold">Год от</label>
-                    <input type="number" class="form-control" id="year_from" name="year_from"
-                           placeholder="2000" value="{{ $.Params.year_from }}">
-                </div>
-
-                <!-- Submit Button -->
-                <div class="col-md-2">
+                <!-- Submit Button (десктоп) -->
+                <div class="col-md-3 d-none d-md-block">
                     <button type="submit" class="btn btn-primary w-100">
                         <i class="fas fa-search me-1"></i>
-                        Найти
+                        Поиск
+                    </button>
+                </div>
+
+                <!-- Mobile Toggle Button -->
+                <div class="col-md-3 d-none d-md-block">
+                    <button type="button" class="btn btn-outline-secondary w-100 mobile-filter-toggle" onclick="toggleAdditionalFilters()">
+                        <i class="fas fa-sliders-h me-1"></i>
+                        Еще фильтры
                     </button>
                 </div>
             </div>
 
-            <!-- Additional Filters Row -->
-            <div class="row g-3 mt-2">
-                <!-- Year To -->
-                <div class="col-md-2">
-                    <label for="year_to" class="form-label small fw-bold">Год до</label>
-                    <input type="number" class="form-control" id="year_to" name="year_to"
-                           placeholder="2024" value="{{ $.Params.year_to }}">
+            <!-- Mobile Search Button -->
+            <div class="row g-3 mt-2 d-md-none">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-1"></i>
+                        Поиск
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-outline-secondary w-100 mobile-filter-toggle" onclick="toggleAdditionalFilters()">
+                        <i class="fas fa-sliders-h me-1"></i>
+                        Еще фильтры
+                    </button>
+                </div>
+            </div>
+
+            <!-- Дополнительные фильтры (скрыты на мобильных) -->
+            <div class="additional-filters" id="additionalFilters">
+                <div class="row g-3 mt-3">
+                    <!-- Price From -->
+                    <div class="col-md-2 col-6">
+                        <label for="price_from" class="form-label small fw-bold">Цена от</label>
+                        <input type="number" class="form-control" id="price_from" name="price_from"
+                               placeholder="500 000" value="{{ $.Params.price_from }}">
+                    </div>
+
+                    <!-- Price To -->
+                    <div class="col-md-2 col-6">
+                        <label for="price_to" class="form-label small fw-bold">Цена до</label>
+                        <input type="number" class="form-control" id="price_to" name="price_to"
+                               placeholder="3 000 000" value="{{ $.Params.price_to }}">
+                    </div>
+
+                    <!-- Year From -->
+                    <div class="col-md-2 col-6">
+                        <label for="year_from" class="form-label small fw-bold">Год от</label>
+                        <input type="number" class="form-control" id="year_from" name="year_from"
+                               placeholder="2000" value="{{ $.Params.year_from }}">
+                    </div>
+
+                    <!-- Year To -->
+                    <div class="col-md-2 col-6">
+                        <label for="year_to" class="form-label small fw-bold">Год до</label>
+                        <input type="number" class="form-control" id="year_to" name="year_to"
+                               placeholder="2024" value="{{ $.Params.year_to }}">
+                    </div>
+
+                    <!-- Body Type -->
+                    <div class="col-md-2 col-6">
+                        <label for="body_type" class="form-label small fw-bold">Тип кузова</label>
+                        <select class="form-select" id="body_type" name="body_type">
+                            <option value="">Любой</option>
+                            {{ range .Site.Taxonomies.body_types }}
+                            <option value="{{ .Page.Title }}" {{ if eq $.Params.body_type .Page.Title }}selected{{ end }}>
+                                {{ .Page.Title }}
+                            </option>
+                            {{ end }}
+                        </select>
+                    </div>
+
+                    <!-- Fuel Type -->
+                    <div class="col-md-2 col-6">
+                        <label for="fuel_type" class="form-label small fw-bold">Топливо</label>
+                        <select class="form-select" id="fuel_type" name="fuel_type">
+                            <option value="">Любое</option>
+                            {{ range .Site.Taxonomies.fuel_types }}
+                            <option value="{{ .Page.Title }}" {{ if eq $.Params.fuel_type .Page.Title }}selected{{ end }}>
+                                {{ .Page.Title }}
+                            </option>
+                            {{ end }}
+                        </select>
+                    </div>
                 </div>
 
-                <!-- Body Type -->
-                <div class="col-md-2">
-                    <label for="body_type" class="form-label small fw-bold">Тип кузова</label>
-                    <select class="form-select" id="body_type" name="body_type">
-                        <option value="">Любой</option>
-                        {{ range .Site.Taxonomies.body_types }}
-                        <option value="{{ .Page.Title }}" {{ if eq $.Params.body_type .Page.Title }}selected{{ end }}>
-                            {{ .Page.Title }}
-                        </option>
-                        {{ end }}
-                    </select>
-                </div>
+                <div class="row g-3 mt-2">
+                    <!-- Transmission -->
+                    <div class="col-md-2 col-6">
+                        <label for="transmission" class="form-label small fw-bold">КПП</label>
+                        <select class="form-select" id="transmission" name="transmission">
+                            <option value="">Любая</option>
+                            <option value="AT" {{ if eq $.Params.transmission "AT" }}selected{{ end }}>AT</option>
+                            <option value="механическая" {{ if eq $.Params.transmission "механическая" }}selected{{ end }}>Механическая</option>
+                            <option value="вариатор" {{ if eq $.Params.transmission "вариатор" }}selected{{ end }}>Вариатор</option>
+                            <option value="робот" {{ if eq $.Params.transmission "робот" }}selected{{ end }}>Робот</option>
+                        </select>
+                    </div>
 
-                <!-- Fuel Type -->
-                <div class="col-md-2">
-                    <label for="fuel_type" class="form-label small fw-bold">Топливо</label>
-                    <select class="form-select" id="fuel_type" name="fuel_type">
-                        <option value="">Любое</option>
-                        {{ range .Site.Taxonomies.fuel_types }}
-                        <option value="{{ .Page.Title }}" {{ if eq $.Params.fuel_type .Page.Title }}selected{{ end }}>
-                            {{ .Page.Title }}
-                        </option>
-                        {{ end }}
-                    </select>
-                </div>
+                    <!-- Sort -->
+                    <div class="col-md-2 col-6">
+                        <label for="sort" class="form-label small fw-bold">Сортировка</label>
+                        <select class="form-select" id="sort" name="sort">
+                            <option value="price_asc">Цена ↑</option>
+                            <option value="price_desc">Цена ↓</option>
+                            <option value="year_desc">Год ↓</option>
+                            <option value="mileage_asc">Пробег ↑</option>
+                        </select>
+                    </div>
 
-                <!-- Transmission -->
-                <div class="col-md-2">
-                    <label for="transmission" class="form-label small fw-bold">КПП</label>
-                    <select class="form-select" id="transmission" name="transmission">
-                        <option value="">Любая</option>
-                        <option value="AT" {{ if eq $.Params.transmission "AT" }}selected{{ end }}>AT</option>
-                        <option value="механическая" {{ if eq $.Params.transmission "механическая" }}selected{{ end }}>Механическая</option>
-                        <option value="вариатор" {{ if eq $.Params.transmission "вариатор" }}selected{{ end }}>Вариатор</option>
-                        <option value="робот" {{ if eq $.Params.transmission "робот" }}selected{{ end }}>Робот</option>
-                    </select>
-                </div>
-
-                <!-- Sort -->
-                <div class="col-md-2">
-                    <label for="sort" class="form-label small fw-bold">Сортировка</label>
-                    <select class="form-select" id="sort" name="sort">
-                        <option value="price_asc">Цена ↑</option>
-                        <option value="price_desc">Цена ↓</option>
-                        <option value="year_desc">Год ↓</option>
-                        <option value="mileage_asc">Пробег ↑</option>
-                    </select>
-                </div>
-
-                <!-- Reset -->
-                <div class="col-md-2">
-                    <label class="form-label small">&nbsp;</label>
-                    <a href="{{ .RelPermalink }}" class="btn btn-outline-secondary w-100">
-                        <i class="fas fa-times me-1"></i>
-                        Сбросить
-                    </a>
+                    <!-- Reset -->
+                    <div class="col-md-2 col-6">
+                        <label class="form-label small">&nbsp;</label>
+                        <a href="{{ .RelPermalink }}" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-times me-1"></i>
+                            Сбросить
+                        </a>
+                    </div>
                 </div>
             </div>
         </form>
@@ -250,6 +279,20 @@
 {{ end }}
 
 <script>
+// Mobile filters toggle
+function toggleAdditionalFilters() {
+    const additionalFilters = document.getElementById('additionalFilters');
+    const toggleButton = document.querySelector('.mobile-filter-toggle');
+
+    if (additionalFilters.classList.contains('show')) {
+        additionalFilters.classList.remove('show');
+        toggleButton.innerHTML = '<i class="fas fa-sliders-h me-1"></i>Еще фильтры';
+    } else {
+        additionalFilters.classList.add('show');
+        toggleButton.innerHTML = '<i class="fas fa-times me-1"></i>Скрыть фильтры';
+    }
+}
+
 // View toggle functionality
 document.querySelectorAll('[data-view]').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -281,6 +324,14 @@ function changePerPage(value) {
     url.searchParams.set('limit', value);
     window.location.href = url.toString();
 }
+
+// Auto-hide additional filters on mobile load
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 768) {
+        const additionalFilters = document.getElementById('additionalFilters');
+        additionalFilters.classList.remove('show');
+    }
+});
 </script>
 
 {{ end }}
