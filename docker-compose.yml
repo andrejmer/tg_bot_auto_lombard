@@ -5,23 +5,14 @@ services:
     build: .
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
-      - WEB_APP_URL=https://auto-lombard.serveo.net
+      - WEB_APP_URL=http://localhost:8080
+    network_mode: "host"
     restart: unless-stopped
 
   web:
     image: nginx:alpine
     volumes:
       - ./index.html:/usr/share/nginx/html/index.html:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
+    network_mode: "host"
     ports:
-      - "8443:443"
       - "8080:80"
-
-  tunnel:
-    image: alpine:latest
-    command: >
-      sh -c "apk add --no-cache openssh &&
-             ssh -o StrictHostKeyChecking=no -R auto-lombard:80:web:80 serveo.net"
-    depends_on:
-      - web
