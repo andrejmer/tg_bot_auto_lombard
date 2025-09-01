@@ -1,9 +1,9 @@
 ---
 title: "Kia Ceed 1.4 MT, 2017, 154 000 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/kia-ceed-2017.jpg"
-images: ["images/cars/kia-ceed-2017.jpg", "images/cars/kia-ceed-2017-1.jpg", "images/cars/kia-ceed-2017-2.jpg", "images/cars/kia-ceed-2017-3.jpg", "images/cars/kia-ceed-2017-4.jpg"]
+images: ["images/cars/kia-ceed-2017.jpg", "images/cars/kia-ceed-2017-1.jpg", "images/cars/kia-ceed-2017-2.jpg", "images/cars/kia-ceed-2017-3.jpg", "images/cars/kia-ceed-2017-4.jpg", "images/cars/kia-ceed-2017-5.jpg", "images/cars/kia-ceed-2017-6.jpg", "images/cars/kia-ceed-2017-7.jpg", "images/cars/kia-ceed-2017-8.jpg", "images/cars/kia-ceed-2017-9.jpg"]
 
 # Данные для фильтрации
 brand: "Kia"
@@ -27,10 +27,8 @@ exchange_possible: true
 credit_available: true
 description: "В продаже Киа Сид 2017 года, МКПП.
 Мотор и техническая часть в порядке. По кузову есть мелкие дефекты.
-Юридически чистый.
-
-Дополнительные изображения: kia-ceed-2017-1.jpg, kia-ceed-2017-2.jpg, kia-ceed-2017-3.jpg, kia-ceed-2017-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/kia_ceed_1.4_mt_2017_154_000_km_7526435791?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+Юридически чистый."
+source_url: "https://www.avito.ru/moskva/avtomobili/kia_ceed_1.4_mt_2017_154_000_km_7526435791?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -54,10 +52,6 @@ weight: 1
 В продаже Киа Сид 2017 года, МКПП.
 Мотор и техническая часть в порядке. По кузову есть мелкие дефекты.
 Юридически чистый.
-
-Дополнительные изображения: kia-ceed-2017-1.jpg, kia-ceed-2017-2.jpg, kia-ceed-2017-3.jpg, kia-ceed-2017-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/kia_ceed_1.4_mt_2017_154_000_km_7526435791?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

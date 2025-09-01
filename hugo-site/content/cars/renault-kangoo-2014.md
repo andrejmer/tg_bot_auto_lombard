@@ -1,9 +1,9 @@
 ---
 title: "Renault Kangoo 1.6 MT, 2014, 180 000 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/renault-kangoo-2014.jpg"
-images: ["images/cars/renault-kangoo-2014.jpg", "images/cars/renault-kangoo-2014-1.jpg", "images/cars/renault-kangoo-2014-2.jpg", "images/cars/renault-kangoo-2014-3.jpg", "images/cars/renault-kangoo-2014-4.jpg"]
+images: ["images/cars/renault-kangoo-2014.jpg", "images/cars/renault-kangoo-2014-1.jpg", "images/cars/renault-kangoo-2014-2.jpg", "images/cars/renault-kangoo-2014-3.jpg", "images/cars/renault-kangoo-2014-4.jpg", "images/cars/renault-kangoo-2014-5.jpg", "images/cars/renault-kangoo-2014-6.jpg", "images/cars/renault-kangoo-2014-7.jpg", "images/cars/renault-kangoo-2014-8.jpg", "images/cars/renault-kangoo-2014-9.jpg"]
 
 # Данные для фильтрации
 brand: "Renault"
@@ -27,10 +27,8 @@ exchange_possible: true
 credit_available: true
 description: "Продается грузовой рефрижератор Рено Кангу 2014 года.
 Состояние хорошее.
-Юридически чистая, штрафов, ограничений нет. рефрижератор вписан в ПТС.
-
-Дополнительные изображения: renault-kangoo-2014-1.jpg, renault-kangoo-2014-2.jpg, renault-kangoo-2014-3.jpg, renault-kangoo-2014-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/renault_kangoo_1.6_mt_2014_180_000_km_7430291863?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+Юридически чистая, штрафов, ограничений нет. рефрижератор вписан в ПТС."
+source_url: "https://www.avito.ru/moskva/avtomobili/renault_kangoo_1.6_mt_2014_180_000_km_7430291863?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -54,10 +52,6 @@ weight: 1
 Продается грузовой рефрижератор Рено Кангу 2014 года.
 Состояние хорошее.
 Юридически чистая, штрафов, ограничений нет. рефрижератор вписан в ПТС.
-
-Дополнительные изображения: renault-kangoo-2014-1.jpg, renault-kangoo-2014-2.jpg, renault-kangoo-2014-3.jpg, renault-kangoo-2014-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/renault_kangoo_1.6_mt_2014_180_000_km_7430291863?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

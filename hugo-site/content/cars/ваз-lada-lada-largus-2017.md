@@ -1,9 +1,9 @@
 ---
 title: "ВАЗ (LADA) Largus 1.6 MT, 2017, 160 500 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/ваз-lada-lada-largus-2017.jpg"
-images: ["images/cars/ваз-lada-lada-largus-2017.jpg", "images/cars/ваз-lada-lada-largus-2017-1.jpg", "images/cars/ваз-lada-lada-largus-2017-2.jpg", "images/cars/ваз-lada-lada-largus-2017-3.jpg", "images/cars/ваз-lada-lada-largus-2017-4.jpg"]
+images: ["images/cars/ваз-lada-lada-largus-2017.jpg", "images/cars/ваз-lada-lada-largus-2017-1.jpg", "images/cars/ваз-lada-lada-largus-2017-2.jpg", "images/cars/ваз-lada-lada-largus-2017-3.jpg", "images/cars/ваз-lada-lada-largus-2017-4.jpg", "images/cars/ваз-lada-lada-largus-2017-5.jpg", "images/cars/ваз-lada-lada-largus-2017-6.jpg", "images/cars/ваз-lada-lada-largus-2017-7.jpg", "images/cars/ваз-lada-lada-largus-2017-8.jpg", "images/cars/ваз-lada-lada-largus-2017-9.jpg"]
 
 # Данные для фильтрации
 brand: "ВАЗ (LADA)"
@@ -27,10 +27,8 @@ exchange_possible: true
 credit_available: true
 description: "Продаю машину в хорошем состоянии.
 Двигатель Рено
-Масло не расходует , двигатель не дымит. Коробка переключает отлично.
-
-Дополнительные изображения: ваз-lada-lada-largus-2017-1.jpg, ваз-lada-lada-largus-2017-2.jpg, ваз-lada-lada-largus-2017-3.jpg, ваз-lada-lada-largus-2017-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/vaz_lada_largus_1.6_mt_2017_160_500_km_7558064659?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+Масло не расходует , двигатель не дымит. Коробка переключает отлично."
+source_url: "https://www.avito.ru/moskva/avtomobili/vaz_lada_largus_1.6_mt_2017_160_500_km_7558064659?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -54,10 +52,6 @@ weight: 1
 Продаю машину в хорошем состоянии.
 Двигатель Рено
 Масло не расходует , двигатель не дымит. Коробка переключает отлично.
-
-Дополнительные изображения: ваз-lada-lada-largus-2017-1.jpg, ваз-lada-lada-largus-2017-2.jpg, ваз-lada-lada-largus-2017-3.jpg, ваз-lada-lada-largus-2017-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/vaz_lada_largus_1.6_mt_2017_160_500_km_7558064659?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

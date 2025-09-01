@@ -1,9 +1,9 @@
 ---
 title: "Infiniti QX80 5.6 AT, 2015, 144 000 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/infiniti-qx80-2015.jpg"
-images: ["images/cars/infiniti-qx80-2015.jpg", "images/cars/infiniti-qx80-2015-1.jpg", "images/cars/infiniti-qx80-2015-2.jpg", "images/cars/infiniti-qx80-2015-3.jpg", "images/cars/infiniti-qx80-2015-4.jpg"]
+images: ["images/cars/infiniti-qx80-2015.jpg", "images/cars/infiniti-qx80-2015-1.jpg", "images/cars/infiniti-qx80-2015-2.jpg", "images/cars/infiniti-qx80-2015-3.jpg", "images/cars/infiniti-qx80-2015-4.jpg", "images/cars/infiniti-qx80-2015-5.jpg", "images/cars/infiniti-qx80-2015-6.jpg", "images/cars/infiniti-qx80-2015-7.jpg", "images/cars/infiniti-qx80-2015-8.jpg", "images/cars/infiniti-qx80-2015-9.jpg"]
 
 # Данные для фильтрации
 brand: "Infiniti"
@@ -32,10 +32,8 @@ description: "В отличном состоянии, без ДТП
 По машине ничего делать не надо.
 Юр. Чистая.
 Выглядит в живую потрясающи.
-Обмена не рассматриваю
-
-Дополнительные изображения: infiniti-qx80-2015-1.jpg, infiniti-qx80-2015-2.jpg, infiniti-qx80-2015-3.jpg, infiniti-qx80-2015-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/infiniti_qx80_5.6_at_2015_144_000_km_7558839240?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+Обмена не рассматриваю"
+source_url: "https://www.avito.ru/moskva/avtomobili/infiniti_qx80_5.6_at_2015_144_000_km_7558839240?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -64,11 +62,6 @@ weight: 1
 Юр. Чистая.
 Выглядит в живую потрясающи.
 Обмена не рассматриваю
-
-Дополнительные изображения: infiniti-qx80-2015-1.jpg, infiniti-qx80-2015-2.jpg, infiniti-qx80-2015-3.jpg, infiniti-qx80-2015-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/infiniti_qx80_5.6_at_2015_144_000_km_7558839240?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
-eybrfkm
 ### Контакты
 - Телефон: +7 (999) 123-45-67
 - Email: info@auto-lombard.ru

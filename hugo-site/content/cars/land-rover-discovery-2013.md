@@ -1,9 +1,9 @@
 ---
 title: "Land Rover Discovery 3.0 AT, 2013, 266 000 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/land-rover-discovery-2013.jpg"
-images: ["images/cars/land-rover-discovery-2013.jpg", "images/cars/land-rover-discovery-2013-1.jpg", "images/cars/land-rover-discovery-2013-2.jpg", "images/cars/land-rover-discovery-2013-3.jpg", "images/cars/land-rover-discovery-2013-4.jpg"]
+images: ["images/cars/land-rover-discovery-2013.jpg", "images/cars/land-rover-discovery-2013-1.jpg", "images/cars/land-rover-discovery-2013-2.jpg", "images/cars/land-rover-discovery-2013-3.jpg", "images/cars/land-rover-discovery-2013-4.jpg", "images/cars/land-rover-discovery-2013-5.jpg", "images/cars/land-rover-discovery-2013-6.jpg", "images/cars/land-rover-discovery-2013-7.jpg", "images/cars/land-rover-discovery-2013-8.jpg", "images/cars/land-rover-discovery-2013-9.jpg"]
 
 # Данные для фильтрации
 brand: "Land Rover"
@@ -25,10 +25,8 @@ pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "Технически в отличном состоянии. По кузову нареканий нет. Юридически чистый. 5 мест
-
-Дополнительные изображения: land-rover-discovery-2013-1.jpg, land-rover-discovery-2013-2.jpg, land-rover-discovery-2013-3.jpg, land-rover-discovery-2013-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/land_rover_discovery_3.0_at_2013_266_000_km_7462189880?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+description: "Технически в отличном состоянии. По кузову нареканий нет. Юридически чистый. 5 мест"
+source_url: "https://www.avito.ru/moskva/avtomobili/land_rover_discovery_3.0_at_2013_266_000_km_7462189880?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -50,10 +48,6 @@ weight: 1
 ## Описание
 
 Технически в отличном состоянии. По кузову нареканий нет. Юридически чистый. 5 мест
-
-Дополнительные изображения: land-rover-discovery-2013-1.jpg, land-rover-discovery-2013-2.jpg, land-rover-discovery-2013-3.jpg, land-rover-discovery-2013-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/land_rover_discovery_3.0_at_2013_266_000_km_7462189880?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

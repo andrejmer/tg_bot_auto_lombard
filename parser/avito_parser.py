@@ -291,15 +291,18 @@ class AvitoParser:
                 for img in gallery_items:
                     src = img.get_attribute('src')
                     if src and not any(x in src.lower() for x in ['placeholder', 'no-photo']):
-                        # Получаем полноразмерное изображение (убираем параметры качества)
+                        # Получаем изображение в высоком качестве
+                        # Заменяем параметры на максимальное качество
                         if '?cqp=' in src:
-                            full_src = src.split('?cqp=')[0]
+                            # Используем параметры для высокого качества
+                            base_url = src.split('?cqp=')[0]
+                            high_quality_src = f"{base_url}?size=1200x900"
                         else:
-                            full_src = src
+                            high_quality_src = src
                         
-                        if full_src not in images:
-                            images.append(full_src)
-                
+                        if high_quality_src not in images:
+                            images.append(high_quality_src)
+
                 # Если не нашли в галерее, ищем основное изображение
                 if not images:
                     main_imgs = self.driver.find_elements(By.CSS_SELECTOR, '[data-marker="image-frame/image"], .desktop-1i6k59z, img[alt*="цена"]')
@@ -307,13 +310,14 @@ class AvitoParser:
                         src = img.get_attribute('src')
                         if src and not any(x in src.lower() for x in ['placeholder', 'no-photo']):
                             if '?cqp=' in src:
-                                full_src = src.split('?cqp=')[0]
+                                base_url = src.split('?cqp=')[0]
+                                high_quality_src = f"{base_url}?size=1200x900"
                             else:
-                                full_src = src
+                                high_quality_src = src
                             
-                            if full_src not in images:
-                                images.append(full_src)
-                        
+                            if high_quality_src not in images:
+                                images.append(high_quality_src)
+
             except NoSuchElementException:
                 pass
 
@@ -471,7 +475,7 @@ class AvitoParser:
                             mileage = self.parse_mileage(mileage_text)
                         except:
                             pass
-                    
+
                     transmission = basic_details.get('transmission', 'AT')
                     if detailed_info.get('transmission_from_page'):
                         trans_text = detailed_info['transmission_from_page'].lower()
@@ -479,7 +483,7 @@ class AvitoParser:
                             if key.lower() in trans_text:
                                 transmission = value
                                 break
-                    
+
                     fuel_type = basic_details.get('fuel_type', 'Бензин')
                     if detailed_info.get('fuel_type_from_page'):
                         fuel_text = detailed_info['fuel_type_from_page'].lower()
@@ -510,9 +514,7 @@ class AvitoParser:
                         description=detailed_info.get('full_description') or f"{brand} {model} {year} года в хорошем состоянии."
                     )
 
-                    # Добавляем дополнительные изображения в описание
-                    if len(image_files) > 1:
-                        car.description += f"\n\nДополнительные изображения: {', '.join(image_files[1:])}"
+                    # Убрали добавление списка изображений в описание
 
                     self.cars_data.append(car)
                     print(f"✅ {brand} {model} {year} - {price:,} ₽ (изображений: {len(image_files)})")
@@ -606,8 +608,6 @@ weight: 1
 ## Описание
 
 {car.description}
-
-**Источник**: [Оригинальное объявление на Авито]({car.url})
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

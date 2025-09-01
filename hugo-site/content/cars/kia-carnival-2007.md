@@ -1,9 +1,9 @@
 ---
 title: "Kia Carnival 2.7 AT, 2007, 296 500 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/kia-carnival-2007.jpg"
-images: ["images/cars/kia-carnival-2007.jpg", "images/cars/kia-carnival-2007-1.jpg", "images/cars/kia-carnival-2007-2.jpg", "images/cars/kia-carnival-2007-3.jpg", "images/cars/kia-carnival-2007-4.jpg"]
+images: ["images/cars/kia-carnival-2007.jpg", "images/cars/kia-carnival-2007-1.jpg", "images/cars/kia-carnival-2007-2.jpg", "images/cars/kia-carnival-2007-3.jpg", "images/cars/kia-carnival-2007-4.jpg", "images/cars/kia-carnival-2007-5.jpg", "images/cars/kia-carnival-2007-6.jpg", "images/cars/kia-carnival-2007-7.jpg", "images/cars/kia-carnival-2007-8.jpg", "images/cars/kia-carnival-2007-9.jpg"]
 
 # Данные для фильтрации
 brand: "Kia"
@@ -25,10 +25,8 @@ pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "7 мест. Продаю автомобиль в хорошем состоянии. По кузову есть мелкие рыжики, сколы машина не новая на езду не влияет. Без ДТП и окрасов. Юридически чистая. Техника на уверенном ходу.
-
-Дополнительные изображения: kia-carnival-2007-1.jpg, kia-carnival-2007-2.jpg, kia-carnival-2007-3.jpg, kia-carnival-2007-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/kia_carnival_2.7_at_2007_296_500_km_7494090553?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+description: "7 мест. Продаю автомобиль в хорошем состоянии. По кузову есть мелкие рыжики, сколы машина не новая на езду не влияет. Без ДТП и окрасов. Юридически чистая. Техника на уверенном ходу."
+source_url: "https://www.avito.ru/moskva/avtomobili/kia_carnival_2.7_at_2007_296_500_km_7494090553?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -50,10 +48,6 @@ weight: 1
 ## Описание
 
 7 мест. Продаю автомобиль в хорошем состоянии. По кузову есть мелкие рыжики, сколы машина не новая на езду не влияет. Без ДТП и окрасов. Юридически чистая. Техника на уверенном ходу.
-
-Дополнительные изображения: kia-carnival-2007-1.jpg, kia-carnival-2007-2.jpg, kia-carnival-2007-3.jpg, kia-carnival-2007-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/kia_carnival_2.7_at_2007_296_500_km_7494090553?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67

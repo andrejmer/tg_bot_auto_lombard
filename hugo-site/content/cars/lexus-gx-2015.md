@@ -1,9 +1,9 @@
 ---
 title: "Lexus GX 4.6 AT, 2015, 124 000 км"
-date: 2025-09-01T22:57:17+03:00
+date: 2025-09-01T23:09:39+03:00
 draft: false
 image: "images/cars/lexus-gx-2015.jpg"
-images: ["images/cars/lexus-gx-2015.jpg", "images/cars/lexus-gx-2015-1.jpg", "images/cars/lexus-gx-2015-2.jpg", "images/cars/lexus-gx-2015-3.jpg", "images/cars/lexus-gx-2015-4.jpg"]
+images: ["images/cars/lexus-gx-2015.jpg", "images/cars/lexus-gx-2015-1.jpg", "images/cars/lexus-gx-2015-2.jpg", "images/cars/lexus-gx-2015-3.jpg", "images/cars/lexus-gx-2015-4.jpg", "images/cars/lexus-gx-2015-5.jpg", "images/cars/lexus-gx-2015-6.jpg", "images/cars/lexus-gx-2015-7.jpg", "images/cars/lexus-gx-2015-8.jpg", "images/cars/lexus-gx-2015-9.jpg"]
 
 # Данные для фильтрации
 brand: "Lexus"
@@ -25,10 +25,8 @@ pts_original: true
 customs_cleared: true
 exchange_possible: true
 credit_available: true
-description: "В отличном состоянии, вложений не требует, полностью обслужен, юридических проблем нет, любые проверки приветствуется. Вин на раме читается. 7 мест. Салон в отличном состоянии, кузов без сколов и дефектов.
-
-Дополнительные изображения: lexus-gx-2015-1.jpg, lexus-gx-2015-2.jpg, lexus-gx-2015-3.jpg, lexus-gx-2015-4.jpg"
-source_url: "https://www.avito.ru/moskva/avtomobili/lexus_gx_4.6_at_2015_124_000_km_7526520472?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA"
+description: "В отличном состоянии, вложений не требует, полностью обслужен, юридических проблем нет, любые проверки приветствуется. Вин на раме читается. 7 мест. Салон в отличном состоянии, кузов без сколов и дефектов."
+source_url: "https://www.avito.ru/moskva/avtomobili/lexus_gx_4.6_at_2015_124_000_km_7526520472?context=H4sIAAAAAAAA_wEfAOD_YToxOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7fQseF2QfAAAA"
 tags: ["авито", "автомобиль"]
 weight: 1
 ---
@@ -50,10 +48,6 @@ weight: 1
 ## Описание
 
 В отличном состоянии, вложений не требует, полностью обслужен, юридических проблем нет, любые проверки приветствуется. Вин на раме читается. 7 мест. Салон в отличном состоянии, кузов без сколов и дефектов.
-
-Дополнительные изображения: lexus-gx-2015-1.jpg, lexus-gx-2015-2.jpg, lexus-gx-2015-3.jpg, lexus-gx-2015-4.jpg
-
-**Источник**: [Оригинальное объявление на Авито](https://www.avito.ru/moskva/avtomobili/lexus_gx_4.6_at_2015_124_000_km_7526520472?context=H4sIAAAAAAAA_wE_AMD_YToyOntzOjEzOiJsb2NhbFByaW9yaXR5IjtiOjA7czoxOiJ4IjtzOjE2OiIyWlhqclRINHpVcm5MS2NEIjt9e6dL5z8AAAA)
 
 ### Контакты
 - Телефон: +7 (999) 123-45-67
