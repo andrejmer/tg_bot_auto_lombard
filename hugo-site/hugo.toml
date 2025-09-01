@@ -19,7 +19,19 @@ disqusShortname = ""
 # Форматы вывода
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-  section = ["HTML", "RSS"]
+  section = ["HTML", "RSS", "ModelsJSON"]
+
+# Медиа типы
+[mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
+
+# Форматы вывода
+[outputFormats]
+  [outputFormats.ModelsJSON]
+    mediaType = "application/json"
+    baseName = "models-data"
+    isPlainText = true
 
 [markup.goldmark.renderer]
   unsafe = true

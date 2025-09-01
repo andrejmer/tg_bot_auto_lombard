@@ -184,18 +184,9 @@
         <!-- Results Summary -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-muted mb-0 results-count">
-                        Показано {{ len .Pages }} из {{ len (where .Site.RegularPages "Section" "cars") }} автомобилей
-                    </h5>
-                    <div class="results-per-page">
-                        <label class="form-label small me-2">Быстрые фильтры:</label>
-                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(0, 2000000)">До 2 млн</button>
-                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(2000000, 3000000)">2-3 млн</button>
-                        <button class="btn btn-sm btn-outline-primary me-2" onclick="carFilter.filterByPrice(3000000, 0)">От 3 млн</button>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="carFilter.resetFilters()">Сбросить</button>
-                    </div>
-                </div>
+                <h5 class="text-muted mb-0 results-count">
+                    Показано {{ len .Pages }} из {{ len (where .Site.RegularPages "Section" "cars") }} автомобилей
+                </h5>
             </div>
         </div>
 

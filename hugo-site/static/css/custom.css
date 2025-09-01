@@ -194,10 +194,7 @@
     font-size: 16px;
   }
 
-  /* Убираем быстрые фильтры на мобильных */
-  .results-per-page {
-    display: none !important;
-  }
+
 
   .results-count {
     font-size: 14px;

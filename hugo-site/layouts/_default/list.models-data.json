@@ -1,0 +1,22 @@
+{{- $brandModels := dict -}}
+{{- range where .Site.RegularPages "Section" "cars" -}}
+  {{- $brand := .Params.brand -}}
+  {{- $model := .Params.model -}}
+  {{- if and $brand $model -}}
+    {{- $currentModels := index $brandModels $brand | default slice -}}
+    {{- if not (in $currentModels $model) -}}
+      {{- $currentModels = $currentModels | append $model -}}
+      {{- $brandModels = merge $brandModels (dict $brand $currentModels) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{
+  "brands": {
+    {{- $brands := slice -}}
+    {{- range $brand, $models := $brandModels -}}
+      {{- $sortedModels := sort $models -}}
+      {{- $brands = $brands | append (printf `"%s": {"name": "%s", "models": [%s]}` $brand $brand (delimit (apply $sortedModels "printf" "\"%s\"" ".") ", ")) -}}
+    {{- end -}}
+    {{ delimit $brands ",\n    " }}
+  }
+}
