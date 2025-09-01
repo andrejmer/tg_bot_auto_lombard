@@ -5,7 +5,7 @@ services:
     build: .
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
-      - WEB_APP_URL=http://web:80
+      - WEB_APP_URL=https://localhost:8443
     depends_on:
       - web
     restart: unless-stopped
@@ -14,5 +14,7 @@ services:
     image: nginx:alpine
     volumes:
       - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
     ports:
-      - "8080:80"
+      - "8443:443"
