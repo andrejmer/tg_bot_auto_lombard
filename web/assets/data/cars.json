@@ -1,0 +1,290 @@
+[
+  {
+    "id": "car_001",
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2019,
+    "price": 2500000,
+    "currency": "RUB",
+    "mileage": 75000,
+    "engine": {
+      "volume": "3.0",
+      "type": "Бензин",
+      "power": 249
+    },
+    "transmission": "Автоматическая",
+    "drive": "Полный",
+    "body": "Внедорожник",
+    "color": "Черный",
+    "condition": "Отличное",
+    "vin": "WBA5A5C50FD123456",
+    "images": [
+      "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800",
+      "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Автомобиль в отличном состоянии. Один владелец, полная история обслуживания у официального дилера. Все ТО пройдены вовремя. Максимальная комплектация с пневмоподвеской и панорамной крышей.",
+    "features": [
+      "Кожаный салон",
+      "Панорамная крыша",
+      "Система навигации",
+      "Пневмоподвеска",
+      "Камера заднего вида",
+      "Парктроник",
+      "Ксеноновые фары",
+      "Климат-контроль"
+    ],
+    "contacts": {
+      "manager": "Иван Петров",
+      "phone": "+7 (999) 123-45-67",
+      "telegram": "@manager_ivan"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-15T12:00:00Z",
+    "status": "available"
+  },
+  {
+    "id": "car_002",
+    "brand": "Mercedes-Benz",
+    "model": "E200",
+    "year": 2020,
+    "price": 3100000,
+    "currency": "RUB",
+    "mileage": 45000,
+    "engine": {
+      "volume": "2.0",
+      "type": "Бензин",
+      "power": 197
+    },
+    "transmission": "Автоматическая",
+    "drive": "Задний",
+    "body": "Седан",
+    "color": "Белый",
+    "condition": "Идеальное",
+    "vin": "WDD2130421A123456",
+    "images": [
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800",
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Премиальный седан в идеальном состоянии. Автомобиль находился в лизинге у крупной компании, обслуживался только у официального дилера. Максимальная комплектация AMG Line.",
+    "features": [
+      "AMG пакет",
+      "Кожаный салон Nappa",
+      "Панорамная крыша",
+      "Мультимедийная система MBUX",
+      "Активный круиз-контроль",
+      "Система помощи при парковке",
+      "LED-фары Multibeam",
+      "Беспроводная зарядка телефона"
+    ],
+    "contacts": {
+      "manager": "Елена Сидорова",
+      "phone": "+7 (999) 234-56-78",
+      "telegram": "@manager_elena"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-05T00:00:00Z",
+    "updated_at": "2024-01-20T12:00:00Z",
+    "status": "available"
+  },
+  {
+    "id": "car_003",
+    "brand": "Audi",
+    "model": "A6",
+    "year": 2021,
+    "price": 4200000,
+    "currency": "RUB",
+    "mileage": 25000,
+    "engine": {
+      "volume": "2.0",
+      "type": "Бензин",
+      "power": 245
+    },
+    "transmission": "Автоматическая",
+    "drive": "Полный",
+    "body": "Седан",
+    "color": "Серый",
+    "condition": "Новое",
+    "vin": "WA1A4AFY6D2123456",
+    "images": [
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Практически новый автомобиль с минимальным пробегом. Автомобиль на гарантии до 2026 года. Все ТО у официального дилера. Полная комплектация с системой автопилота.",
+    "features": [
+      "Виртуальная панель приборов",
+      "Матричные LED-фары",
+      "Massage-функция сидений",
+      "Bang & Olufsen аудиосистема",
+      "Система автопилота",
+      "Адаптивная подвеска",
+      "Система ночного видения",
+      "Беспроводная зарядка"
+    ],
+    "contacts": {
+      "manager": "Дмитрий Козлов",
+      "phone": "+7 (999) 345-67-89",
+      "telegram": "@manager_dmitry"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-10T00:00:00Z",
+    "updated_at": "2024-01-25T12:00:00Z",
+    "status": "available"
+  },
+  {
+    "id": "car_004",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "price": 1850000,
+    "currency": "RUB",
+    "mileage": 65000,
+    "engine": {
+      "volume": "2.0",
+      "type": "Бензин",
+      "power": 150
+    },
+    "transmission": "Автоматическая",
+    "drive": "Передний",
+    "body": "Седан",
+    "color": "Синий",
+    "condition": "Хорошее",
+    "vin": "4T1BE46K19U123456",
+    "images": [
+      "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",
+      "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Надежный семейный седан в хорошем состоянии. Автомобиль эксплуатировался аккуратно, регулярное обслуживание. Отличный вариант для города и дальних поездок.",
+    "features": [
+      "Система безопасности Toyota Safety Sense",
+      "Камера заднего вида",
+      "Двухзонный климат-контроль",
+      "Мультимедийная система",
+      "Круиз-контроль",
+      "Электроприводы сидений",
+      "Подогрев сидений",
+      "Датчики дождя и света"
+    ],
+    "contacts": {
+      "manager": "Анна Морозова",
+      "phone": "+7 (999) 456-78-90",
+      "telegram": "@manager_anna"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-12T00:00:00Z",
+    "updated_at": "2024-01-28T12:00:00Z",
+    "status": "available"
+  },
+  {
+    "id": "car_005",
+    "brand": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2019,
+    "price": 2200000,
+    "currency": "RUB",
+    "mileage": 85000,
+    "engine": {
+      "volume": "2.0",
+      "type": "Бензин",
+      "power": 180
+    },
+    "transmission": "Автоматическая",
+    "drive": "Полный",
+    "body": "Внедорожник",
+    "color": "Красный",
+    "condition": "Хорошее",
+    "vin": "WVGZZZ5NZKW123456",
+    "images": [
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Практичный и надежный кроссовер. Отлично подходит для семейных поездок и активного отдыха. Полный привод 4Motion обеспечивает уверенность на любой дороге.",
+    "features": [
+      "Система полного привода 4Motion",
+      "Панорамная крыша",
+      "Навигационная система",
+      "Парковочный автопилот",
+      "Камера 360°",
+      "Подогрев руля",
+      "Память сидений",
+      "Адаптивный круиз-контроль"
+    ],
+    "contacts": {
+      "manager": "Сергей Волков",
+      "phone": "+7 (999) 567-89-01",
+      "telegram": "@manager_sergey"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-15T00:00:00Z",
+    "updated_at": "2024-01-30T12:00:00Z",
+    "status": "available"
+  },
+  {
+    "id": "car_006",
+    "brand": "Hyundai",
+    "model": "Sonata",
+    "year": 2021,
+    "price": 1650000,
+    "currency": "RUB",
+    "mileage": 35000,
+    "engine": {
+      "volume": "2.0",
+      "type": "Бензин",
+      "power": 150
+    },
+    "transmission": "Автоматическая", 
+    "drive": "Передний",
+    "body": "Седан",
+    "color": "Белый",
+    "condition": "Отличное",
+    "vin": "KMHL14JA5MA123456",
+    "images": [
+      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",
+      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&crop=focalpoint&fp-x=0.7"
+    ],
+    "description": "Современный седан с отличным соотношением цена-качество. Автомобиль в отличном состоянии, небольшой пробег. Гарантия производителя действует до 2026 года.",
+    "features": [
+      "Система SmartSense",
+      "Беспроводная зарядка телефона",
+      "Цифровая панель приборов",
+      "Подогрев и вентиляция сидений",
+      "Камера заднего вида",
+      "Система мониторинга слепых зон",
+      "Адаптивный круиз-контроль",
+      "Автоматическое экстренное торможение"
+    ],
+    "contacts": {
+      "manager": "Ольга Новикова",
+      "phone": "+7 (999) 678-90-12",
+      "telegram": "@manager_olga"
+    },
+    "location": {
+      "city": "Москва",
+      "address": "ул. Примерная, 123"
+    },
+    "created_at": "2024-01-18T00:00:00Z",
+    "updated_at": "2024-02-02T12:00:00Z",
+    "status": "available"
+  }
+]
