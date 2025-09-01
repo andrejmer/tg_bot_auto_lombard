@@ -26,7 +26,8 @@ vin: "WVGZZZ5NZKW123456"
 # Изображения
 images:
   - "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800"
-  - "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&crop=focalpoint&fp-x=0.3"
+  - "https://images.unsplash.com/photo-1544636331-e268
+  79cd4d9b?w=800&crop=focalpoint&fp-x=0.3"
   - "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&crop=focalpoint&fp-x=0.7"
 
 # Характеристики
