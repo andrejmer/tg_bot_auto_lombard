@@ -1,0 +1,16 @@
+{
+  "brands": {"BMW": {"name": "BMW", "models": ["5 серия"]},
+    "Chevrolet": {"name": "Chevrolet", "models": ["Cobalt"]},
+    "Infiniti": {"name": "Infiniti", "models": ["QX80"]},
+    "Kia": {"name": "Kia", "models": ["Carnival", "Ceed"]},
+    "Land Rover": {"name": "Land Rover", "models": ["Discovery"]},
+    "Lexus": {"name": "Lexus", "models": ["GX"]},
+    "Mazda": {"name": "Mazda", "models": ["3"]},
+    "Mercedes-Benz": {"name": "Mercedes-Benz", "models": ["E-класс AMG"]},
+    "Nissan": {"name": "Nissan", "models": ["Patrol"]},
+    "Peugeot": {"name": "Peugeot", "models": ["308"]},
+    "Porsche": {"name": "Porsche", "models": ["Cayenne Turbo"]},
+    "Renault": {"name": "Renault", "models": ["Kangoo"]},
+    "ВАЗ (LADA)": {"name": "ВАЗ (LADA)", "models": ["(LADA) Largus"]}
+  }
+}
