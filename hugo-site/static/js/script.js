@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             updateFloatingLabels(); // Update floating labels after changes
-            
+
             // Apply filters
             filterCars();
         });
@@ -327,27 +327,27 @@ function filterCars() {
         if (selectedBrand && cardBrand !== selectedBrand) {
             show = false;
         }
-        
+
         if (selectedModel && cardModel !== selectedModel) {
             show = false;
         }
-        
+
         if (cardPrice < priceFrom || cardPrice > priceTo) {
             show = false;
         }
-        
+
         if (cardYear < yearFrom || cardYear > yearTo) {
             show = false;
         }
-        
+
         if (selectedBodyType && cardBodyType !== selectedBodyType) {
             show = false;
         }
-        
+
         if (selectedFuelType && cardFuelType !== selectedFuelType) {
             show = false;
         }
-        
+
         if (selectedTransmission && cardTransmission !== selectedTransmission) {
             show = false;
         }
@@ -374,7 +374,7 @@ function filterCars() {
     // Show/hide no results message
     const noResultsSection = document.querySelector('.no-results');
     const carsContainer = document.getElementById('cars-container');
-    
+
     if (visibleCount === 0) {
         if (carsContainer) carsContainer.style.display = 'none';
         if (noResultsSection) {
@@ -436,7 +436,7 @@ function clearFilters() {
 document.addEventListener('DOMContentLoaded', function() {
     // Add listeners for price and year inputs
     const additionalFilters = ['price_from', 'price_to', 'year_from', 'year_to', 'body_type', 'fuel_type', 'transmission'];
-    
+
     additionalFilters.forEach(filterId => {
         const element = document.getElementById(filterId);
         if (element) {
