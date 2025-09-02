@@ -3,7 +3,7 @@
 {{ define "main" }}
 
 <!-- Page Header -->
-<section class="page-header py-5 bg-light">
+<section class="page-header py-5 bg-light" style="margin-top: 80px;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -25,7 +25,7 @@
 <!-- Filters Section -->
 <section class="filters-section py-4 bg-white border-bottom">
     <div class="container">
-        <form method="GET" action="{{ .RelPermalink }}" class="filters-form">
+        <form class="filters-form" onsubmit="return false;">
             <!-- Основные фильтры (всегда видны) -->
             <div class="row g-3 align-items-end">
                 <!-- Brand Filter -->

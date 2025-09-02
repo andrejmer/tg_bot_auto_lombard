@@ -299,7 +299,7 @@ class AvitoParser:
                             high_quality_src = f"{base_url}?size=1200x900"
                         else:
                             high_quality_src = src
-                        
+
                         if high_quality_src not in images:
                             images.append(high_quality_src)
 
@@ -314,7 +314,7 @@ class AvitoParser:
                                 high_quality_src = f"{base_url}?size=1200x900"
                             else:
                                 high_quality_src = src
-                            
+
                             if high_quality_src not in images:
                                 images.append(high_quality_src)
 

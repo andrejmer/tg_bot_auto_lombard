@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (selectedBrand && carModelsData.brands && carModelsData.brands[selectedBrand]) {
                 // Enable model select and populate with models
                 modelInput.disabled = false;
-                modelInput.innerHTML = '<option value="" selected disabled hidden></option>';
+                modelInput.innerHTML = '<option value="">Все модели</option>';
 
                 // Add models for selected brand
                 const models = carModelsData.brands[selectedBrand].models;
@@ -77,10 +77,19 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Disable model select and reset
                 modelInput.disabled = true;
-                modelInput.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
+                modelInput.innerHTML = '<option value="">Все модели</option>';
             }
 
             updateFloatingLabels(); // Update floating labels after changes
+            
+            // Apply filters
+            filterCars();
+        });
+
+        // Model selection handler
+        modelInput.addEventListener('change', function() {
+            updateFloatingLabels();
+            filterCars();
         });
     }
 
@@ -273,6 +282,168 @@ document.addEventListener('DOMContentLoaded', function() {
 
     images.forEach(img => imageObserver.observe(img));
 
+});
+
+// ===== CAR FILTERING =====
+function filterCars() {
+    const brandSelect = document.getElementById('brand');
+    const modelSelect = document.getElementById('model');
+    const priceFromInput = document.getElementById('price_from');
+    const priceToInput = document.getElementById('price_to');
+    const yearFromInput = document.getElementById('year_from');
+    const yearToInput = document.getElementById('year_to');
+    const bodyTypeSelect = document.getElementById('body_type');
+    const fuelTypeSelect = document.getElementById('fuel_type');
+    const transmissionSelect = document.getElementById('transmission');
+
+    // Get filter values
+    const selectedBrand = brandSelect ? brandSelect.value : '';
+    const selectedModel = modelSelect ? modelSelect.value : '';
+    const priceFrom = priceFromInput ? parseInt(priceFromInput.value) || 0 : 0;
+    const priceTo = priceToInput ? parseInt(priceToInput.value) || Infinity : Infinity;
+    const yearFrom = yearFromInput ? parseInt(yearFromInput.value) || 0 : 0;
+    const yearTo = yearToInput ? parseInt(yearToInput.value) || Infinity : Infinity;
+    const selectedBodyType = bodyTypeSelect ? bodyTypeSelect.value : '';
+    const selectedFuelType = fuelTypeSelect ? fuelTypeSelect.value : '';
+    const selectedTransmission = transmissionSelect ? transmissionSelect.value : '';
+
+    // Get all car cards
+    const carCards = document.querySelectorAll('.car-card');
+    let visibleCount = 0;
+
+    carCards.forEach(card => {
+        let show = true;
+
+        // Get car data from the card
+        const cardBrand = card.getAttribute('data-brand') || '';
+        const cardModel = card.getAttribute('data-model') || '';
+        const cardPrice = parseInt(card.getAttribute('data-price')) || 0;
+        const cardYear = parseInt(card.getAttribute('data-year')) || 0;
+        const cardBodyType = card.getAttribute('data-body') || '';
+        const cardFuelType = card.getAttribute('data-fuel') || '';
+        const cardTransmission = card.getAttribute('data-transmission') || '';
+
+        // Apply filters
+        if (selectedBrand && cardBrand !== selectedBrand) {
+            show = false;
+        }
+        
+        if (selectedModel && cardModel !== selectedModel) {
+            show = false;
+        }
+        
+        if (cardPrice < priceFrom || cardPrice > priceTo) {
+            show = false;
+        }
+        
+        if (cardYear < yearFrom || cardYear > yearTo) {
+            show = false;
+        }
+        
+        if (selectedBodyType && cardBodyType !== selectedBodyType) {
+            show = false;
+        }
+        
+        if (selectedFuelType && cardFuelType !== selectedFuelType) {
+            show = false;
+        }
+        
+        if (selectedTransmission && cardTransmission !== selectedTransmission) {
+            show = false;
+        }
+
+        // Show/hide card
+        const cardContainer = card.closest('.col-lg-4, .col-md-6, .col-12');
+        if (cardContainer) {
+            if (show) {
+                cardContainer.style.display = 'block';
+                visibleCount++;
+            } else {
+                cardContainer.style.display = 'none';
+            }
+        }
+    });
+
+    // Update results count
+    const resultsCount = document.querySelector('.results-count');
+    if (resultsCount) {
+        const totalCount = carCards.length;
+        resultsCount.textContent = `Показано ${visibleCount} из ${totalCount} автомобилей`;
+    }
+
+    // Show/hide no results message
+    const noResultsSection = document.querySelector('.no-results');
+    const carsContainer = document.getElementById('cars-container');
+    
+    if (visibleCount === 0) {
+        if (carsContainer) carsContainer.style.display = 'none';
+        if (noResultsSection) {
+            noResultsSection.style.display = 'block';
+        } else {
+            // Create no results message if it doesn't exist
+            const container = carsContainer ? carsContainer.parentElement : null;
+            if (container) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results text-center py-5';
+                noResults.innerHTML = `
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4>Автомобили не найдены</h4>
+                    <p class="text-muted">Попробуйте изменить параметры поиска</p>
+                    <button class="btn btn-primary" onclick="clearFilters()">
+                        Сбросить фильтры
+                    </button>
+                `;
+                container.appendChild(noResults);
+            }
+        }
+    } else {
+        if (carsContainer) carsContainer.style.display = 'block';
+        if (noResultsSection) noResultsSection.style.display = 'none';
+    }
+}
+
+// Clear all filters
+function clearFilters() {
+    const brandSelect = document.getElementById('brand');
+    const modelSelect = document.getElementById('model');
+    const priceFromInput = document.getElementById('price_from');
+    const priceToInput = document.getElementById('price_to');
+    const yearFromInput = document.getElementById('year_from');
+    const yearToInput = document.getElementById('year_to');
+    const bodyTypeSelect = document.getElementById('body_type');
+    const fuelTypeSelect = document.getElementById('fuel_type');
+    const transmissionSelect = document.getElementById('transmission');
+
+    if (brandSelect) brandSelect.value = '';
+    if (modelSelect) {
+        modelSelect.value = '';
+        modelSelect.disabled = true;
+        modelSelect.innerHTML = '<option value="">Все модели</option>';
+    }
+    if (priceFromInput) priceFromInput.value = '';
+    if (priceToInput) priceToInput.value = '';
+    if (yearFromInput) yearFromInput.value = '';
+    if (yearToInput) yearToInput.value = '';
+    if (bodyTypeSelect) bodyTypeSelect.value = '';
+    if (fuelTypeSelect) fuelTypeSelect.value = '';
+    if (transmissionSelect) transmissionSelect.value = '';
+
+    updateFloatingLabels();
+    filterCars();
+}
+
+// Add event listeners for additional filters
+document.addEventListener('DOMContentLoaded', function() {
+    // Add listeners for price and year inputs
+    const additionalFilters = ['price_from', 'price_to', 'year_from', 'year_to', 'body_type', 'fuel_type', 'transmission'];
+    
+    additionalFilters.forEach(filterId => {
+        const element = document.getElementById(filterId);
+        if (element) {
+            element.addEventListener('change', filterCars);
+            element.addEventListener('input', debounce(filterCars, 300)); // Debounce for text inputs
+        }
+    });
 });
 
 // ===== UTILITY FUNCTIONS =====

@@ -3,7 +3,7 @@
 {{ define "main" }}
 
 <!-- Breadcrumbs -->
-<section class="breadcrumbs py-3 bg-light">
+<section class="breadcrumbs py-3 bg-light" style="margin-top: 80px;">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
@@ -102,7 +102,7 @@
                             <div class="col-6">
                                 <div class="spec-item text-center p-3 bg-white rounded-2">
                                     <i class="fas fa-gas-pump text-primary mb-2 fs-5"></i>
-                                    <div class="spec-value fw-bold">{{ .Params.engine.type }}</div>
+                                    <div class="spec-value fw-bold">{{ .Params.fuel_type }}</div>
                                     <div class="spec-label small text-muted">топливо</div>
                                 </div>
                             </div>
@@ -152,27 +152,22 @@
                             <h5 class="text-primary mb-3">Двигатель и трансмиссия</h5>
                             <table class="table table-sm">
                                 <tbody>
-                                    {{ with .Params.engine }}
                                     <tr>
                                         <td class="text-muted">Объем двигателя:</td>
-                                        <td class="fw-bold">{{ .volume }} л</td>
+                                        <td class="fw-bold">{{ .Params.engine_volume }} л</td>
                                     </tr>
                                     <tr>
                                         <td class="text-muted">Тип топлива:</td>
-                                        <td class="fw-bold">{{ .type }}</td>
+                                        <td class="fw-bold">{{ $.Params.fuel_type }}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-muted">Мощность:</td>
-                                        <td class="fw-bold">{{ .power }} л.с.</td>
-                                    </tr>
-                                    {{ end }}
+
                                     <tr>
                                         <td class="text-muted">Коробка передач:</td>
                                         <td class="fw-bold">{{ .Params.transmission }}</td>
                                     </tr>
                                     <tr>
                                         <td class="text-muted">Привод:</td>
-                                        <td class="fw-bold">{{ .Params.drive }}</td>
+                                        <td class="fw-bold">{{ .Params.drive_type }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,7 +180,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-muted">Тип кузова:</td>
-                                        <td class="fw-bold">{{ .Params.body }}</td>
+                                        <td class="fw-bold">{{ .Params.body_type }}</td>
                                     </tr>
                                     <tr>
                                         <td class="text-muted">Цвет:</td>
