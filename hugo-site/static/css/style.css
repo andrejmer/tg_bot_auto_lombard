@@ -25,6 +25,22 @@ body {
   font-family: var(--font-family);
   line-height: 1.6;
   color: var(--dark-color);
+  padding-top: 0; /* Reset default Bootstrap padding */
+}
+
+/* ===== NAVBAR SPACING ===== */
+.navbar.sticky-top {
+  z-index: 1020; /* Bootstrap navbar z-index */
+}
+
+/* Page content offset for sticky navbar */
+main {
+  margin-top: 0; /* Let sections handle their own spacing */
+}
+
+/* First section after navbar needs proper spacing */
+.page-header, .breadcrumbs, .hero-section {
+  padding-top: calc(80px + 1rem) !important; /* navbar height + extra space */
 }
 
 /* ===== HERO SECTION ===== */
