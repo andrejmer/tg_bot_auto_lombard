@@ -25,22 +25,54 @@ body {
   font-family: var(--font-family);
   line-height: 1.6;
   color: var(--dark-color);
-  padding-top: 0; /* Reset default Bootstrap padding */
 }
 
 /* ===== NAVBAR SPACING ===== */
 .navbar.sticky-top {
   z-index: 1020; /* Bootstrap navbar z-index */
+  min-height: 80px; /* Minimum navbar height */
+}
+
+.navbar .container {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 /* Page content offset for sticky navbar */
-main {
-  margin-top: 0; /* Let sections handle their own spacing */
+body {
+  padding-top: 80px; /* Offset for sticky navbar */
 }
 
-/* First section after navbar needs proper spacing */
-.page-header, .breadcrumbs, .hero-section {
-  padding-top: calc(80px + 1rem) !important; /* navbar height + extra space */
+/* Ensure main content doesn't overlap */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile navbar adjustments */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .navbar.sticky-top {
+    min-height: 70px; /* Smaller on mobile */
+  }
+
+  body {
+    padding-top: 70px; /* Adjust for mobile navbar */
+  }
 }
 
 /* ===== HERO SECTION ===== */
