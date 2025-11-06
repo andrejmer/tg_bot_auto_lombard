@@ -137,10 +137,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let modelsData = {};
 
+    if (!brandSelect || !modelSelect) {
+        console.error('Select elements not found!', {brandSelect, modelSelect});
+        return;
+    }
+    
+    console.log('Initializing brand/model selectors...');
+    
     // Load models data
     fetch('{{ "cars/models-data.json" | relURL }}')
-        .then(response => response.json())
+        .then(response => {
+            console.log('Fetching models data...');
+            return response.json();
+        })
         .then(data => {
+            console.log('Models data loaded:', Object.keys(data).length, 'brands');
             modelsData = data;
             populateBrands();
         })
@@ -172,18 +183,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (brandSelect) {
         brandSelect.addEventListener('change', function() {
             const selectedBrand = this.value;
-
+            console.log('Selected brand:', selectedBrand);
+            console.log('Available models:', modelsData[selectedBrand]);
+            
             if (!selectedBrand || !modelsData[selectedBrand]) {
+                console.log('No brand selected or no models data');
                 modelSelect.disabled = true;
                 modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
                 return;
             }
-
+            
             // Populate models
             const models = modelsData[selectedBrand];
-            modelSelect.innerHTML = '<option value="" selected disabled hidden></option>';
-
+            modelSelect.innerHTML = '<option value="">Выберите модель</option>';
+            
             if (models && models.length > 0) {
+                console.log('Adding models:', models.length);
                 models.forEach(model => {
                     const option = document.createElement('option');
                     option.value = model;
@@ -191,11 +206,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     modelSelect.appendChild(option);
                 });
                 modelSelect.disabled = false;
+                console.log('Model select enabled, total options:', modelSelect.options.length);
             } else {
-                modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Нет моделей</option>';
+                console.log('No models found for brand');
+                modelSelect.innerHTML = '<option value="">Нет моделей</option>';
                 modelSelect.disabled = true;
             }
         });
+    } else {
+        console.error('Brand select element not found');
     }
 });
 </script>
