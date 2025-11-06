@@ -213,32 +213,57 @@
     if (brandSelect) {
         brandSelect.addEventListener('change', function() {
             const selectedBrand = this.value;
+            console.log('=== Brand Selection Event ===');
             console.log('Selected brand:', selectedBrand);
+            console.log('Brand type:', typeof selectedBrand);
             console.log('Available models:', modelsData[selectedBrand]);
+            console.log('Models type:', typeof modelsData[selectedBrand]);
+            console.log('Models is Array:', Array.isArray(modelsData[selectedBrand]));
+            
+            // Проверяем условия по отдельности
+            console.log('Check 1 - selectedBrand:', !!selectedBrand);
+            console.log('Check 2 - modelsData[selectedBrand]:', !!modelsData[selectedBrand]);
+            console.log('Check 3 - modelSelect exists:', !!modelSelect);
 
             if (!selectedBrand || !modelsData[selectedBrand]) {
-                console.log('No brand selected or no models data');
+                console.log('❌ Validation failed - returning');
                 modelSelect.disabled = true;
                 modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
                 return;
             }
 
+            console.log('✅ Validation passed - proceeding to populate models');
+
             // Populate models
             const models = modelsData[selectedBrand];
-            modelSelect.innerHTML = '<option value="">Выберите модель</option>';
+            console.log('Models to add:', models.length);
+            
+            // Очищаем селектор
+            modelSelect.innerHTML = '';
+            console.log('Cleared model select');
+            
+            // Добавляем первую опцию
+            const firstOption = document.createElement('option');
+            firstOption.value = '';
+            firstOption.textContent = 'Выберите модель';
+            modelSelect.appendChild(firstOption);
+            console.log('Added first option');
 
             if (models && models.length > 0) {
-                console.log('Adding models:', models.length);
-                models.forEach(model => {
+                console.log('Starting to add', models.length, 'models...');
+                models.forEach((model, index) => {
                     const option = document.createElement('option');
                     option.value = model;
                     option.textContent = model;
                     modelSelect.appendChild(option);
+                    if (index < 3) {
+                        console.log(`Added model ${index}:`, model);
+                    }
                 });
                 modelSelect.disabled = false;
-                console.log('Model select enabled, total options:', modelSelect.options.length);
+                console.log('✅ Model select enabled, total options:', modelSelect.options.length);
             } else {
-                console.log('No models found for brand');
+                console.log('❌ No models found for brand');
                 modelSelect.innerHTML = '<option value="">Нет моделей</option>';
                 modelSelect.disabled = true;
             }
