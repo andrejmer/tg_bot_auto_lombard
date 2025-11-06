@@ -13,16 +13,16 @@ import aiohttp
 
 class CarManager:
     """Класс для управления объявлениями автомобилей"""
-    
+
     def __init__(self, hugo_site_path: str = "../hugo-site"):
         self.hugo_site_path = Path(hugo_site_path)
         self.content_path = self.hugo_site_path / "content" / "cars"
         self.images_path = self.hugo_site_path / "static" / "images" / "cars"
-        
+
         # Создаем директории если их нет
         self.content_path.mkdir(parents=True, exist_ok=True)
         self.images_path.mkdir(parents=True, exist_ok=True)
-    
+
     def slugify(self, text: str) -> str:
         """Создает slug из текста (для имен файлов)"""
         # Транслитерация
@@ -33,7 +33,7 @@ class CarManager:
             'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
             'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
         }
-        
+
         text = text.lower()
         result = []
         for char in text:
@@ -43,50 +43,45 @@ class CarManager:
                 result.append(char)
             elif char == ' ':
                 result.append('-')
-        
+
         slug = ''.join(result)
         # Удаляем повторяющиеся дефисы
         slug = re.sub(r'-+', '-', slug)
         return slug.strip('-')
-    
+
     async def save_photo(self, photo_data: bytes, filename: str) -> str:
         """Сохраняет фотографию и возвращает путь"""
         filepath = self.images_path / filename
-        
+
         async with aiofiles.open(filepath, 'wb') as f:
             await f.write(photo_data)
-        
+
         # Возвращаем путь относительно static
         return f"images/cars/{filename}"
-    
+
     async def create_car_listing(self, car_data: Dict) -> str:
         """Создает объявление автомобиля (markdown файл для Hugo)"""
-        
+
         # Генерируем имя файла
         brand = car_data.get('brand', 'unknown')
         model = car_data.get('model', 'unknown')
         year = car_data.get('year', datetime.now().year)
-        
-        slug = f"{self.slugify(brand)}-{self.slugify(model)}-{year}"
+
+        # Добавляем timestamp для уникальности
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        slug = f"{self.slugify(brand)}-{self.slugify(model)}-{year}-{timestamp}"
         filename = f"{slug}.md"
         filepath = self.content_path / filename
-        
-        # Если файл существует, добавляем номер
-        counter = 1
-        while filepath.exists():
-            filename = f"{slug}-{counter}.md"
-            filepath = self.content_path / filename
-            counter += 1
-        
+
         # Формируем заголовок
         title = f"{brand} {model} {car_data.get('engine_volume', '')} {car_data.get('transmission', '')}, {year}"
         if car_data.get('mileage'):
             title += f", {car_data.get('mileage')} км"
-        
+
         # Формируем список изображений
         images = car_data.get('images', [])
         images_str = ', '.join([f'"{img}"' for img in images])
-        
+
         # Формируем front matter
         front_matter = f"""---
 title: "{title}"
@@ -147,16 +142,16 @@ weight: 1
 
 **Возможен обмен, кредит, лизинг.**
 """
-        
+
         # Сохраняем файл
         async with aiofiles.open(filepath, 'w', encoding='utf-8') as f:
             await f.write(front_matter)
-        
+
         return str(filepath)
-    
+
     def format_car_summary(self, car_data: Dict) -> str:
         """Форматирует краткую информацию об автомобиле для предпросмотра"""
-        
+
         summary = f"""
 🚗 **{car_data.get('brand', '')} {car_data.get('model', '')}**
 
@@ -179,4 +174,3 @@ weight: 1
 {car_data.get('description', 'Не указано')[:200]}...
 """
         return summary
-

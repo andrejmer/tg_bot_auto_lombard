@@ -3,7 +3,13 @@
 """
 
 import os
+from pathlib import Path
 from typing import List
+from dotenv import load_dotenv
+
+# Загружаем переменные из .env файла
+env_path = Path(__file__).parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 
 # Токен бота
@@ -14,6 +20,9 @@ WEBAPP_URL = os.getenv("WEBAPP_URL", "http://localhost:1313")
 
 # Путь к Hugo сайту
 HUGO_SITE_PATH = os.getenv("HUGO_SITE_PATH", "../hugo-site")
+
+# Dadata API ключ для справочников
+DADATA_API_KEY = os.getenv("DADATA_API_KEY", "")
 
 # ID администраторов (кто может добавлять объявления)
 ADMIN_IDS_STR = os.getenv("ADMIN_IDS", "")
@@ -43,4 +52,3 @@ def get_admin_info() -> str:
     if not ADMIN_IDS:
         return "⚠️ Администраторы не настроены. Добавьте ADMIN_IDS в .env файл"
     return f"✅ Настроено администраторов: {len(ADMIN_IDS)}"
-

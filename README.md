@@ -67,6 +67,7 @@ tg_bot_auto_lombard/
 BOT_TOKEN=your_telegram_bot_token
 WEBAPP_URL=https://yourusername.github.io/tg_bot_auto_lombard
 ADMIN_IDS=123456789,987654321  # Telegram ID администраторов через запятую
+DADATA_API_KEY=your_dadata_api_key  # (Опционально) Для полного справочника марок
 ```
 
 ### Требования
@@ -90,6 +91,7 @@ ADMIN_IDS=123456789,987654321  # Telegram ID администраторов че
 ## 📖 Подробная документация
 
 - [Настройка Telegram бота](docs/TELEGRAM_SETUP.md)
+- [Настройка Dadata API](docs/DADATA_API_SETUP.md) (опционально)
 
 ## 🌐 Демо
 

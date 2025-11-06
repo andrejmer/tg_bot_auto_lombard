@@ -30,6 +30,7 @@ try:
     from config import BOT_TOKEN, WEBAPP_URL, is_admin, ADMIN_IDS, get_admin_info, HUGO_SITE_PATH
     from states import CarCreationStates
     from car_manager import CarManager
+    from car_brands import CAR_BRANDS  # Локальный справочник марок и моделей
     from bot_functions import (
         get_start_message, get_catalog_message, get_search_message,
         get_callback_response, search_by_text, get_menu_button_config,
@@ -109,6 +110,40 @@ def create_selection_keyboard(options: list, row_width: int = 2):
     keyboard.append([KeyboardButton(text="❌ Отменить")])
 
     return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
+
+
+def create_inline_keyboard(items: list, callback_prefix: str, row_width: int = 2, add_manual: bool = True):
+    """Создает inline клавиатуру для выбора из списка"""
+    keyboard = []
+    row = []
+
+    for item in items:
+        button = InlineKeyboardButton(
+            text=item,
+            callback_data=f"{callback_prefix}:{item}"
+        )
+        row.append(button)
+        if len(row) >= row_width:
+            keyboard.append(row)
+            row = []
+
+    if row:
+        keyboard.append(row)
+
+    # Добавляем кнопку "Ввести вручную"
+    if add_manual:
+        keyboard.append([InlineKeyboardButton(
+            text="✍️ Ввести вручную",
+            callback_data=f"{callback_prefix}:manual"
+        )])
+
+    # Добавляем кнопку отмены
+    keyboard.append([InlineKeyboardButton(
+        text="❌ Отменить",
+        callback_data="cancel_add_car"
+    )])
+
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 
 # ========== КОМАНДЫ ==========
@@ -207,11 +242,16 @@ async def cmd_add_car(message: types.Message, state: FSMContext):
         return
 
     await state.set_state(CarCreationStates.brand)
+
+    # Создаем inline кнопки с марками (загружаются из API или кеша)
+    brands = await get_all_brands()
+    keyboard = create_inline_keyboard(brands, "brand", row_width=2)
+
     await message.answer(
         "➕ **Добавление нового автомобиля**\n\n"
-        "📝 Введите марку автомобиля (например: BMW, Toyota, Mercedes-Benz):",
+        "🚗 Выберите марку автомобиля из списка или введите вручную:",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardRemove()
+        reply_markup=keyboard
     )
 
 
@@ -226,11 +266,19 @@ async def process_brand(message: types.Message, state: FSMContext):
         await message.answer("❌ Добавление автомобиля отменено", reply_markup=ReplyKeyboardRemove())
         return
 
-    await state.update_data(brand=message.text.strip())
+    brand_input = message.text.strip()
+
+    # Добавляем марку в справочник, если её там нет
+    if brand_input not in CAR_BRANDS:
+        CAR_BRANDS[brand_input] = []
+        logger.info(f"Добавлена новая марка: {brand_input}")
+
+    await state.update_data(brand=brand_input)
     await state.set_state(CarCreationStates.model)
 
     await message.answer(
-        "📝 Введите модель автомобиля (например: X5, Camry, E-класс):",
+        f"✅ Марка: **{brand_input}**\n\n"
+        f"📝 Введите модель автомобиля (например: X5, Camry, E-класс):",
         parse_mode="Markdown"
     )
 
@@ -244,11 +292,20 @@ async def process_model(message: types.Message, state: FSMContext):
         await message.answer("❌ Добавление автомобиля отменено", reply_markup=ReplyKeyboardRemove())
         return
 
-    await state.update_data(model=message.text.strip())
+    model_input = message.text.strip()
+
+    # Получаем марку из состояния
+    data = await state.get_data()
+    brand = data.get('brand', '')
+
+    # Принимаем любую модель (Dadata API не поддерживает справочник моделей)
+    await state.update_data(model=model_input)
     await state.set_state(CarCreationStates.year)
 
     await message.answer(
-        "📅 Введите год выпуска (например: 2020):",
+        f"✅ Марка: **{brand}**\n"
+        f"✅ Модель: **{model_input}**\n\n"
+        f"📅 Введите год выпуска (например: 2020):",
         parse_mode="Markdown"
     )
 
@@ -638,11 +695,92 @@ async def callback_admin_add_car(callback: types.CallbackQuery, state: FSMContex
         return
 
     await state.set_state(CarCreationStates.brand)
+
+    # Создаем inline кнопки с марками из справочника
+    brands = sorted(CAR_BRANDS.keys())
+    keyboard = create_inline_keyboard(brands, "brand", row_width=2)
+
     await callback.message.answer(
         "➕ **Добавление нового автомобиля**\n\n"
-        "📝 Введите марку автомобиля (например: BMW, Toyota, Mercedes-Benz):",
+        "🚗 Выберите марку автомобиля из списка или введите вручную:",
+        parse_mode="Markdown",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+
+@dp.callback_query(F.data.startswith("brand:"), CarCreationStates.brand)
+async def callback_brand_selected(callback: types.CallbackQuery, state: FSMContext):
+    """Обработка выбора марки через inline кнопку"""
+
+    brand = callback.data.split(":", 1)[1]
+
+    if brand == "manual":
+        # Пользователь хочет ввести марку вручную
+        await callback.message.edit_text(
+            "📝 Введите марку автомобиля вручную:",
+            parse_mode="Markdown"
+        )
+        await callback.answer()
+        return
+
+    # Сохраняем выбранную марку
+    await state.update_data(brand=brand)
+    await state.set_state(CarCreationStates.model)
+
+    # Получаем модели для выбранной марки
+    models = CAR_BRANDS.get(brand, [])
+    keyboard = create_inline_keyboard(models, "model", row_width=2)
+
+    await callback.message.edit_text(
+        f"✅ Марка: **{brand}**\n\n"
+        f"🚗 Выберите модель автомобиля:",
+        parse_mode="Markdown",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+
+@dp.callback_query(F.data.startswith("model:"), CarCreationStates.model)
+async def callback_model_selected(callback: types.CallbackQuery, state: FSMContext):
+    """Обработка выбора модели через inline кнопку"""
+
+    model = callback.data.split(":", 1)[1]
+
+    if model == "manual":
+        # Пользователь хочет ввести модель вручную
+        data = await state.get_data()
+        brand = data.get('brand', '')
+        await callback.message.edit_text(
+            f"✅ Марка: **{brand}**\n\n"
+            f"📝 Введите модель автомобиля вручную:",
+            parse_mode="Markdown"
+        )
+        await callback.answer()
+        return
+
+    # Сохраняем выбранную модель
+    await state.update_data(model=model)
+    await state.set_state(CarCreationStates.year)
+
+    data = await state.get_data()
+    brand = data.get('brand', '')
+
+    await callback.message.edit_text(
+        f"✅ Марка: **{brand}**\n"
+        f"✅ Модель: **{model}**\n\n"
+        f"📅 Введите год выпуска (например: 2020):",
         parse_mode="Markdown"
     )
+    await callback.answer()
+
+
+@dp.callback_query(F.data == "cancel_add_car")
+async def callback_cancel_add_car(callback: types.CallbackQuery, state: FSMContext):
+    """Отмена создания объявления через inline кнопку"""
+
+    await state.clear()
+    await callback.message.edit_text("❌ Добавление автомобиля отменено")
     await callback.answer()
 
 
@@ -720,15 +858,15 @@ async def callback_back_to_start(callback: types.CallbackQuery):
     if is_admin(callback.from_user.id):
         message_data = get_admin_start_message(callback.from_user.id)
     else:
-        message_data = get_start_message()
+            message_data = get_start_message()
 
-    keyboard = create_keyboard_from_buttons(message_data["buttons"])
+            keyboard = create_keyboard_from_buttons(message_data["buttons"])
 
-    await callback.message.edit_text(
-        message_data["text"],
-        reply_markup=keyboard,
-        parse_mode=message_data["parse_mode"]
-    )
+            await callback.message.edit_text(
+                message_data["text"],
+                reply_markup=keyboard,
+                parse_mode=message_data["parse_mode"]
+            )
     await callback.answer()
 
 
