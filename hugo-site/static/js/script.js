@@ -52,41 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         });
 
-    // Brand selection handler
-    if (brandSelect && modelInput) {
+    // Brand/Model selection is now handled in index.html
+    // This old code has been replaced with new dynamic selector logic
+    // Kept only for filter application
+    if (brandSelect) {
         brandSelect.addEventListener('change', function() {
-            const selectedBrand = this.value;
             updateFloatingLabels(); // Update floating label state
-
-            if (selectedBrand && carModelsData.brands && carModelsData.brands[selectedBrand]) {
-                // Enable model select and populate with models
-                modelInput.disabled = false;
-                modelInput.innerHTML = '<option value="">Все модели</option>';
-
-                // Add models for selected brand
-                const models = carModelsData.brands[selectedBrand].models;
-                models.forEach(model => {
-                    const option = document.createElement('option');
-                    option.value = model;
-                    option.textContent = model;
-                    modelInput.appendChild(option);
-                });
-
-                // Auto-focus model select when brand is selected
-                modelInput.focus();
-            } else {
-                // Disable model select and reset
-                modelInput.disabled = true;
-                modelInput.innerHTML = '<option value="">Все модели</option>';
-            }
-
-            updateFloatingLabels(); // Update floating labels after changes
-
+            // Don't manage modelInput here - it's handled by index.html
             // Apply filters
             filterCars();
         });
+    }
 
-        // Model selection handler
+    // Model selection handler
+    if (modelInput) {
         modelInput.addEventListener('change', function() {
             updateFloatingLabels();
             filterCars();
@@ -417,8 +396,8 @@ function clearFilters() {
     if (brandSelect) brandSelect.value = '';
     if (modelSelect) {
         modelSelect.value = '';
-        modelSelect.disabled = true;
-        modelSelect.innerHTML = '<option value="">Все модели</option>';
+        // Don't manage disabled state here - it's handled by index.html
+        // Just reset the value
     }
     if (priceFromInput) priceFromInput.value = '';
     if (priceToInput) priceToInput.value = '';

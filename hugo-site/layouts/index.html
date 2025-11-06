@@ -219,7 +219,7 @@
             console.log('Available models:', modelsData[selectedBrand]);
             console.log('Models type:', typeof modelsData[selectedBrand]);
             console.log('Models is Array:', Array.isArray(modelsData[selectedBrand]));
-            
+
             // Проверяем условия по отдельности
             console.log('Check 1 - selectedBrand:', !!selectedBrand);
             console.log('Check 2 - modelsData[selectedBrand]:', !!modelsData[selectedBrand]);
@@ -228,6 +228,7 @@
             if (!selectedBrand || !modelsData[selectedBrand]) {
                 console.log('❌ Validation failed - returning');
                 modelSelect.disabled = true;
+                modelSelect.setAttribute('disabled', 'disabled');
                 modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
                 return;
             }
@@ -237,11 +238,11 @@
             // Populate models
             const models = modelsData[selectedBrand];
             console.log('Models to add:', models.length);
-            
+
             // Очищаем селектор
             modelSelect.innerHTML = '';
             console.log('Cleared model select');
-            
+
             // Добавляем первую опцию
             const firstOption = document.createElement('option');
             firstOption.value = '';
@@ -260,8 +261,27 @@
                         console.log(`Added model ${index}:`, model);
                     }
                 });
+
+                // Агрессивно включаем селектор - и через свойство, и через атрибут
                 modelSelect.disabled = false;
+                modelSelect.removeAttribute('disabled');
+
                 console.log('✅ Model select enabled, total options:', modelSelect.options.length);
+                console.log('Disabled property:', modelSelect.disabled);
+                console.log('Disabled attribute:', modelSelect.getAttribute('disabled'));
+                console.log('Has disabled attribute:', modelSelect.hasAttribute('disabled'));
+
+                // Проверяем состояние после небольшой задержки
+                setTimeout(() => {
+                    console.log('🔍 Check after 100ms - disabled:', modelSelect.disabled);
+                    console.log('🔍 Has disabled attribute:', modelSelect.hasAttribute('disabled'));
+                    if (modelSelect.disabled || modelSelect.hasAttribute('disabled')) {
+                        console.error('⚠️ WARNING: Model select was disabled again!');
+                        modelSelect.disabled = false;
+                        modelSelect.removeAttribute('disabled');
+                        console.log('Forcefully re-enabled model select');
+                    }
+                }, 100);
             } else {
                 console.log('❌ No models found for brand');
                 modelSelect.innerHTML = '<option value="">Нет моделей</option>';
