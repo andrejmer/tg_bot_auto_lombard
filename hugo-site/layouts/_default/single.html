@@ -2,19 +2,6 @@
 
 {{ define "main" }}
 
-<!-- Breadcrumbs -->
-<section class="breadcrumbs py-3 bg-light">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ "/" | relURL }}">Главная</a></li>
-                <li class="breadcrumb-item"><a href="{{ "cars/" | relURL }}">Каталог</a></li>
-                <li class="breadcrumb-item active">{{ .Params.brand }} {{ .Params.model }}</li>
-            </ol>
-        </nav>
-    </div>
-</section>
-
 <!-- Car Details -->
 <section class="car-details py-5">
     <div class="container">
