@@ -353,12 +353,8 @@ class CarSearchFilter {
             }
         });
 
-        // Reset model dropdown
-        const modelSelect = document.getElementById('model');
-        if (modelSelect) {
-            modelSelect.disabled = true;
-            modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
-        }
+        // Don't manage model dropdown here - it's handled by index.html script
+        // The brand/model selector logic is now in index.html
 
         // Clear filters and show all cars
         this.currentFilters = {};
