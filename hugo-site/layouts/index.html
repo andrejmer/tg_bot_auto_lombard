@@ -129,4 +129,75 @@
     </div>
 </section>
 
+<script>
+// Dynamic Brand/Model Selector
+document.addEventListener('DOMContentLoaded', function() {
+    const brandSelect = document.getElementById('brand');
+    const modelSelect = document.getElementById('model');
+
+    let modelsData = {};
+
+    // Load models data
+    fetch('{{ "cars/models-data.json" | relURL }}')
+        .then(response => response.json())
+        .then(data => {
+            modelsData = data;
+            populateBrands();
+        })
+        .catch(error => {
+            console.error('Error loading models data:', error);
+            // Fallback: just enable the selects
+            if (brandSelect) brandSelect.disabled = false;
+        });
+
+    function populateBrands() {
+        if (!brandSelect || !modelsData) return;
+
+        // Clear existing options except first
+        brandSelect.innerHTML = '<option value="" selected disabled hidden></option>';
+
+        // Add brands
+        const brands = Object.keys(modelsData).sort();
+        brands.forEach(brand => {
+            const option = document.createElement('option');
+            option.value = brand;
+            option.textContent = brand;
+            brandSelect.appendChild(option);
+        });
+
+        brandSelect.disabled = false;
+    }
+
+    // Brand selection handler
+    if (brandSelect) {
+        brandSelect.addEventListener('change', function() {
+            const selectedBrand = this.value;
+
+            if (!selectedBrand || !modelsData[selectedBrand]) {
+                modelSelect.disabled = true;
+                modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
+                return;
+            }
+
+            // Populate models
+            const models = modelsData[selectedBrand];
+            modelSelect.innerHTML = '<option value="" selected disabled hidden></option>';
+
+            if (models && models.length > 0) {
+                models.forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+                modelSelect.disabled = false;
+            } else {
+                modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Нет моделей</option>';
+                modelSelect.disabled = true;
+            }
+        });
+    }
+});
+</script>
+
 {{ end }}
