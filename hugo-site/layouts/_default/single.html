@@ -26,7 +26,7 @@
                     <!-- Main Image -->
                     <div class="main-image mb-3">
                         <img src="{{ index . 0 | relURL }}" class="img-fluid rounded-3 w-100"
-                             alt="{{ $.Title }}" id="mainImage" style="height: 400px; object-fit: cover;">
+                             alt="{{ $.Title }}" id="mainImage" style="height: 500px;">
                     </div>
 
                     <!-- Thumbnail Images -->
@@ -49,7 +49,7 @@
                     <div class="main-image">
                         <img src="{{ "images/cars/placeholder.svg" | relURL }}"
                              class="img-fluid rounded-3 w-100" alt="Placeholder"
-                             style="height: 400px; object-fit: cover;">
+                             style="height: 500px;">
                     </div>
                     {{ end }}
                 </div>
@@ -333,15 +333,22 @@ document.querySelectorAll('.thumbnail-img').forEach(img => {
     opacity: 1;
 }
 
-.sticky-top {
+/* Sidebar sticky positioning - below navbar */
+.car-info.sticky-top {
     top: 100px; /* navbar height + some space */
 }
 
 @media (max-width: 992px) {
-    .sticky-top {
+    .car-info.sticky-top {
         position: relative !important;
         top: auto !important;
     }
+}
+
+/* Main image - contain instead of cover to show full image */
+.main-image img {
+    object-fit: contain !important;
+    background-color: #f8f9fa;
 }
 </style>
 
