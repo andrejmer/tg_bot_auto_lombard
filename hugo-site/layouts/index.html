@@ -268,20 +268,57 @@
 
                 console.log('✅ Model select enabled, total options:', modelSelect.options.length);
                 console.log('Disabled property:', modelSelect.disabled);
-                console.log('Disabled attribute:', modelSelect.getAttribute('disabled'));
-                console.log('Has disabled attribute:', modelSelect.hasAttribute('disabled'));
 
-                // Проверяем состояние после небольшой задержки
-                setTimeout(() => {
-                    console.log('🔍 Check after 100ms - disabled:', modelSelect.disabled);
-                    console.log('🔍 Has disabled attribute:', modelSelect.hasAttribute('disabled'));
-                    if (modelSelect.disabled || modelSelect.hasAttribute('disabled')) {
-                        console.error('⚠️ WARNING: Model select was disabled again!');
-                        modelSelect.disabled = false;
-                        modelSelect.removeAttribute('disabled');
-                        console.log('Forcefully re-enabled model select');
-                    }
-                }, 100);
+                // Множественная проверка с разными задержками
+                [50, 100, 200, 500].forEach(delay => {
+                    setTimeout(() => {
+                        const currentOptionsCount = modelSelect.options.length;
+                        if (modelSelect.disabled || modelSelect.hasAttribute('disabled') || currentOptionsCount < 2) {
+                            console.error(`⚠️ After ${delay}ms - fixing selector! disabled:`, modelSelect.disabled, 'options:', currentOptionsCount);
+
+                            // Полностью восстанавливаем селектор
+                            modelSelect.disabled = false;
+                            modelSelect.removeAttribute('disabled');
+
+                            // Если опции были удалены, восстанавливаем их
+                            if (currentOptionsCount < 2) {
+                                modelSelect.innerHTML = '';
+                                const firstOption = document.createElement('option');
+                                firstOption.value = '';
+                                firstOption.textContent = 'Выберите модель';
+                                modelSelect.appendChild(firstOption);
+
+                                models.forEach(model => {
+                                    const option = document.createElement('option');
+                                    option.value = model;
+                                    option.textContent = model;
+                                    modelSelect.appendChild(option);
+                                });
+                                console.log(`Restored ${models.length} models`);
+                            }
+                        }
+                    }, delay);
+                });
+
+                // Устанавливаем наблюдатель за изменениями селектора
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
+                            if (modelSelect.disabled && models.length > 0) {
+                                console.error('🚨 MutationObserver: Someone tried to disable model select! Re-enabling...');
+                                modelSelect.disabled = false;
+                                modelSelect.removeAttribute('disabled');
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(modelSelect, {
+                    attributes: true,
+                    attributeFilter: ['disabled']
+                });
+
+                console.log('👁️ MutationObserver установлен для защиты селектора');
             } else {
                 console.log('❌ No models found for brand');
                 modelSelect.innerHTML = '<option value="">Нет моделей</option>';
