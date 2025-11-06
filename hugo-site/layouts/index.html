@@ -79,13 +79,13 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="price_from" name="price_from" placeholder="500000">
+                                        <input type="text" class="form-control price-input" id="price_from" name="price_from" placeholder="500 000">
                                         <label for="price_from">Цена от, ₽</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="price_to" name="price_to" placeholder="3000000">
+                                        <input type="text" class="form-control price-input" id="price_to" name="price_to" placeholder="3 000 000">
                                         <label for="price_to">Цена до, ₽</label>
                                     </div>
                                 </div>
@@ -130,10 +130,40 @@
 </section>
 
 <script>
-// Dynamic Brand/Model Selector
-document.addEventListener('DOMContentLoaded', function() {
-    const brandSelect = document.getElementById('brand');
-    const modelSelect = document.getElementById('model');
+        // Price Formatting with Thousand Separators
+        document.addEventListener('DOMContentLoaded', function() {
+            // Форматирование цен с разделителями тысяч
+            const priceInputs = document.querySelectorAll('.price-input');
+
+            priceInputs.forEach(input => {
+                // Форматирование при вводе
+                input.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, ''); // Удаляем пробелы
+
+                    // Оставляем только цифры
+                    value = value.replace(/\D/g, '');
+
+                    if (value) {
+                        // Добавляем пробелы как разделители тысяч
+                        e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                    }
+                });
+
+                // Сохраняем числовое значение в скрытом поле при отправке формы
+                input.closest('form').addEventListener('submit', function() {
+                    // Создаем скрытое поле с числовым значением
+                    const numericValue = input.value.replace(/\s/g, '');
+                    input.setAttribute('data-numeric-value', numericValue);
+                });
+            });
+
+            console.log('Price formatting initialized');
+        });
+
+        // Dynamic Brand/Model Selector
+        document.addEventListener('DOMContentLoaded', function() {
+            const brandSelect = document.getElementById('brand');
+            const modelSelect = document.getElementById('model');
 
     let modelsData = {};
 
@@ -141,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Select elements not found!', {brandSelect, modelSelect});
         return;
     }
-    
+
     console.log('Initializing brand/model selectors...');
-    
+
     // Load models data
     fetch('{{ "cars/models-data.json" | relURL }}')
         .then(response => {
@@ -185,18 +215,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedBrand = this.value;
             console.log('Selected brand:', selectedBrand);
             console.log('Available models:', modelsData[selectedBrand]);
-            
+
             if (!selectedBrand || !modelsData[selectedBrand]) {
                 console.log('No brand selected or no models data');
                 modelSelect.disabled = true;
                 modelSelect.innerHTML = '<option value="" selected disabled hidden></option><option value="">Сначала выберите марку</option>';
                 return;
             }
-            
+
             // Populate models
             const models = modelsData[selectedBrand];
             modelSelect.innerHTML = '<option value="">Выберите модель</option>';
-            
+
             if (models && models.length > 0) {
                 console.log('Adding models:', models.length);
                 models.forEach(model => {
